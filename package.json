@@ -1,0 +1,42 @@
+{
+  "name": "chill-spot",
+  "version": "1.0.0",
+  "description": "Fullstack Node.js application with express, ejs and MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "dev": "nodemon server",
+    "start": "node server",
+    "pretest": "cross-env NODE_ENV=test node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mayowa-Ojo/chill-spot.git"
+  },
+  "author": "Mayowa Ojo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mayowa-Ojo/chill-spot/issues"
+  },
+  "homepage": "https://github.com/Mayowa-Ojo/chill-spot#readme",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.16.2",
+    "handlebars": "^4.2.1",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.19.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cross-env": "^6.0.0",
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.2"
+  }
+}
