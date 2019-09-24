@@ -1,0 +1,78 @@
+<header class="ui container">
+  <h1>view all spots</h1>
+  <div class="ui grid">
+    <div class="four wide column">
+      <div class="ui vertical menu">
+        <a class="active teal item">
+          Inbox
+          <div class="ui teal left pointing label">1</div>
+        </a>
+        <a class="item">
+          Spam
+          <div class="ui label">51</div>
+        </a>
+        <a class="item">
+          Updates
+          <div class="ui label">1</div>
+        </a>
+        <div class="item">
+          <div class="ui transparent icon input">
+            <input type="text" placeholder="Search mail...">
+            <i class="search icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="twelve wide stretched column">
+      <div class="ui segment">
+        This is an stretched grid column. This segment will always match the tab height
+      </div>
+    </div>
+  </div>
+</header>
+
+{{!-- display chill spot cards --}}
+<section class="show-spots-grid">
+  <div class="ui centered grid container">
+    {{#each spots}}
+    <div class="five wide column">
+      <div class="ui card">
+        <div class="content">
+          <div class="right floated meta">14h</div>
+          <img class="ui avatar image" src="/public/assets/images/avatar-2027367_640.png"> Elliot
+        </div>
+        <div class="image">
+          <img src="/public/assets/images/spot-cafe-3537801_640.jpg">
+        </div>
+        <div class="content">
+          <span class="right floated">
+            <i class="heart outline like icon"></i>
+            17 likes
+          </span>
+          <i class="comment icon"></i>
+          3 comments
+        </div>
+        <div class="content">
+          <a class="header">{{this.name}}</a>
+          <div class="meta">
+            <span class="right floated">$3.50 - $8.50</span>
+            <span class="date">{{this.location}}</span>
+          </div>
+          <div class="description">
+            {{this.description}}
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui large transparent left icon input">
+            <i class="comment alternate outline icon"></i>
+            <input type="text" placeholder="Add Comment...">
+          </div>
+          <div class="right floated">
+            <div class="ui basic green tiny button">View</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</section>
