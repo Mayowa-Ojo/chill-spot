@@ -1,3 +1,4 @@
 node_modules
 .env
-src/public/assets
+src/lib/public/assets
+src/lib/semantic
