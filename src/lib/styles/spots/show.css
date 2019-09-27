@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url('/public/assets/images/background-alcohol-1961542_1280.jpg') center center/cover no-repeat !important;
+}
+
+
+.spot-container {
+  margin-top: 5em;
+}
+
+.ui.grid.container {
+  width: 1000px;
+  border: 1px solid white;
+}
+
+.ui.centered.grid.container .six.wide.column {
+  padding: 0;
+}

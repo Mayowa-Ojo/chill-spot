@@ -1,0 +1,44 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.ui.container {
+  margin: 3em 0;
+}
+
+.ui.grid.container {
+  width: calc(1200px + 2rem)!important;
+}
+
+.ui.grid .ui.segment {
+  background: url('/public/assets/images/header-fashion-985556_640.jpg') center center/cover no-repeat !important;
+  position: relative;
+}
+
+.ui.grid .ui.segment::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.ui.card {
+  width: 350px;
+}
+
+.ui.card .content .description {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
