@@ -5,7 +5,6 @@ const morgan = require('morgan')
 const exphbs = require('express-handlebars')
 // -------------------------------
 // relative imports
-const Spot = require('./src/models/spot')
 const spotRouter = require('./src/routes/spot')
   
 /** config */
