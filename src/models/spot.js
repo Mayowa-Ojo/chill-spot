@@ -22,10 +22,6 @@ const Spot = sequelize.define('spot', {
   price_range: {
     type: STRING,
     allowNull: false
-  },
-  date: {
-    type: DATE,
-    allowNull: false
   }
 },
 {
