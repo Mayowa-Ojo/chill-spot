@@ -34,12 +34,6 @@ app.get('/', (req, res) => {
   res.render('landing', { layout: false })
 })
 
-app.get('/spots', (req, res) => {
-  Spot.findAll()
-    .then(spots => res.status(200).json({ spots }))
-    .catch(err => res.status(404).json({message: err.message}))
-})
-
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT} in ${NODE_ENV}`)
 })
