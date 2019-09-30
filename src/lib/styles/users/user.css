@@ -1,0 +1,42 @@
+body {
+  overflow: hidden;
+}
+
+.main-wrapper {
+  width: 100%;
+  height: 95vh;
+  position: relative;
+  border: 1px solid white;
+  background: url('/public/assets/images/background-alcohol-1961542_1280.jpg') no-repeat center center/cover !important;
+}
+
+.main-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.register-form {
+  width: 30vw;
+  height: 67vh;
+  margin: 8em auto;
+  position: relative;
+  z-index: 2;
+}
+
+.login-form {
+  width: 26vw;
+  height: 67vh;
+  margin: 10em auto;
+  position: relative;
+  z-index: 2;
+}
+
+.ui.segment {
+  padding: 2em 2.5em;
+}
