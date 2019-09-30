@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars')
 // -------------------------------
 // relative imports
 const spotRouter = require('./src/routes/spot')
+const userRouter = require('./src/routes/user')
   
 /** config */
 const app = express()
@@ -27,6 +28,7 @@ app.engine('.hbs', exphbs({ extname: '.hbs'}))
 app.set('view engine', '.hbs')
 // express router
 app.use('/spots', spotRouter)
+app.use('/users', userRouter)
 
 
 app.get('/', (req, res) => {
