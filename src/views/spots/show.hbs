@@ -1,15 +1,97 @@
-<h1 style="text-align: center; color: white">View this chill spot</h1>
+<div class="main-wrapper">
+  <section class="spot-container">
+    <div class="ui centered grid container">
+      <div class="ten wide column">
+        <div class="ui segment">
+          <h1 class="ui brown header">Chill Spot</h1>
+          {{!-- main info --}}
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ipsam asperiores fuga. Quibusdam neque eveniet illo. Tempora voluptas unde magni deleniti quidem perferendis quis quam excepturi iusto, sed delectus odio?</p>
+          
+          <div class="ui list">
+            <div class="item">
+              <i class="map marker alternate icon"></i>
+              <div class="content">Location</div>
+            </div>
+          </div>
+          <div class="ui label">
+            <i class="tag icon"></i> Price
+          </div>
+          {{!-- meta information --}}
+          <div class="ui feed">
+            <div class="event">
+              <div class="label">
+                <img src="/public/assets/images/avatar-2027367_640.png" alt="avatar image">
+              </div>
+              <div class="content">
+                <div class="summary">
+                  <a href="#" class="user">anonymous</a>
+                  <div class="date">8 days ago</div>
+                </div>
+                <div class="meta">
+                  <a href="#" class="like">
+                    <i class="like icon"></i>23 likes
+                  </a>
+                  <a href="#" class="like">
+                    <i class="comment outline icon"></i>42 comments
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{!-- comments --}}
+          <div class="ui threaded comments">
+            <h3 class="ui dividing header">Comments</h3>
+            <div class="comment">
+              <a href="#" class="avatar">
+                <img src="/public/assets/svg/avatar-male.svg" alt="avatar placeholder">
+              </a>
+              <div class="content">
+                <a href="#" class="author">Mark</a>
+                <div class="metadata">
+                  <span class="date">Yesterday at 3:02PM</span>
+                </div>
+                <div class="text">This place looks awesome!</div>
+                <div class="actions">
+                  <a href="#" class="reply">Reply</a>
+                </div>
+              </div>
+            </div>
+            {{!-- -------------------------}}
+            <div class="comment">
+              <a href="#" class="avatar">
+                <img src="/public/assets/svg/avatar-female.svg" alt="avatar placeholder">
+              </a>
+              <div class="content">
+                <a href="#" class="author">Mark</a>
+                <div class="metadata">
+                  <span class="date">Yesterday at 3:02PM</span>
+                </div>
+                <div class="text">This place looks awesome!</div>
+                <div class="actions">
+                  <a href="#" class="reply">Reply</a>
+                </div>
+              </div>
+            </div>
 
-<section class="spot-container">
-  <div class="ui centered grid container">
-    <div class="ten wide column">
-      <div class="ui segment">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ipsam asperiores fuga. Quibusdam neque eveniet illo. Tempora voluptas unde magni deleniti quidem perferendis quis quam excepturi iusto, sed delectus odio?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex expedita quisquam, modi cupiditate doloremque nemo, nesciunt magnam, dolor odit quos accusamus eum? Dolores optio in itaque, repellat assumenda perferendis aliquid?</p>
+            {{!-- add comment form --}}
+            <form action="" class="ui reply form">
+              <div class="field">
+                <textarea name="" id=""></textarea>
+              </div>
+            </form>
+
+            <div class="ui animated mini button" tabindex="0">
+              <div class="visible content">Add comment</div>
+              <div class="hidden content">
+                <i class="comment alternate outline icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="six wide column">
+        <img src="/public/assets/images/spot-cafe-3537801_640.jpg" alt="" class="ui fluid image">
       </div>
     </div>
-    <div class="six wide column">
-      <img src="/public/assets/images/spot-cafe-3537801_640.jpg" alt="" class="ui fluid image">
-    </div>
-  </div>
-</section>
+  </section>
+</div>

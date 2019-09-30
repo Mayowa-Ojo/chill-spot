@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Find Cool Spots</title>
-  <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
   {{!-- url for the css file is passed dynamically from the controller --}}
   <link rel="stylesheet" href="{{ css }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
+  {{!-- <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css"> --}}
+  {{!-- <script src="/semantic/dist/semantic.min.js"></script> --}}
 </head>
 <body>
   <nav>
@@ -29,11 +33,11 @@
   </nav>
   {{{ body }}}
 
-  <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous">
+  
+  <script>
+    console.log('hello world')
+    $('.ui.dropdown')
+      .dropdown();
   </script>
-  <script src="/semantic/dist/semantic.min.js"></script>
 </body>
 </html>

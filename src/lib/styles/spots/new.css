@@ -1,0 +1,34 @@
+body {
+  overflow: hidden;
+}
+
+.main-wrapper {
+  width: 100%;
+  height: 95vh;
+  position: relative;
+  border: 1px solid white;
+  background: url('/public/assets/images/background-alcohol-1961542_1280.jpg') no-repeat center center/cover !important;
+}
+
+.main-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.new-spot-form {
+  width: 40vw;
+  height: 67vh;
+  margin: 8em auto;
+  position: relative;
+  z-index: 2;
+}
+
+.ui.segment {
+  height: 100%;
+}
