@@ -10,24 +10,18 @@
   <link rel="stylesheet" href="{{ css }}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
-  {{!-- <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css"> --}}
-  {{!-- <script src="/semantic/dist/semantic.min.js"></script> --}}
 </head>
 <body>
   <nav>
     <div class="ui pointing menu">
-      <a class="active item">
+      <a href="/" class="active item">
         Home
       </a>
       <div class="right menu">
-        <a class="item"><i class="edit outline icon"></i>Add a chill-spot</a>
-        <a class="item"><i class="heart outline icon"></i>Favourite Spots</a>
-        <a class="item">
-          Sign In
-        </a>
-        <a class="item">
-          Register
-        </a>
+        <a href="/spots/new" class="item"><i class="edit outline icon"></i>Add a chill-spot</a>
+        <a href="#" class="item"><i class="heart outline icon"></i>Favourite Spots</a>
+        <a href="/users/login" class="item">Sign In</a>
+        <a href="/users/register" class="item">Register</a>
       </div>
     </div>    
   </nav>
