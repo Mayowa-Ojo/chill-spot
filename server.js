@@ -19,7 +19,7 @@ const PORT = process.env.PORT
 const NODE_ENV = process.env.NODE_ENV
 
 /** middleware */
-// app.use(morgan('combined'))
+app.use(morgan(':method :url :status'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static('./src/lib'))
