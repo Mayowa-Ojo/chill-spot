@@ -23,12 +23,17 @@ body {
 
 .new-spot-form {
   width: 40vw;
-  height: 67vh;
-  margin: 8em auto;
+  height: 72vh;
+  margin: 4em auto;
   position: relative;
   z-index: 2;
 }
 
 .ui.segment {
   height: 100%;
+}
+
+.btn-bottom {
+  display: flex;
+  justify-content: space-between;
 }

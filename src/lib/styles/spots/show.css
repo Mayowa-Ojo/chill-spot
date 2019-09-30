@@ -36,8 +36,27 @@ body {
 .ui.grid.container {
   width: 1000px;
   border: 1px solid white;
+  height: 88vh;
 }
 
-.ui.centered.grid.container .six.wide.column {
+.ui.centered.grid.container .ten.wide.column {
   padding: 0;
+}
+
+.ui.centered.grid.container .six.wide.column .ui.segment {
+  overflow-y: scroll;
+  height: 670px;
+}
+
+.ui.list .item .content {
+  color: steelblue;
+}
+
+.ui.reply.form .field {
+  margin-bottom: 1em;
+}
+
+.btn-bottom {
+  display: flex;
+  justify-content: space-between;
 }
