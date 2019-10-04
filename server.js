@@ -3,6 +3,7 @@ const env = require('dotenv')
 const path = require('path')
 const morgan = require('morgan')
 const exphbs = require('express-handlebars')
+const methodOverride = require('method-override')
 // -------------------------------
 // relative imports
 const spotRouter = require('./src/routes/spot')
@@ -21,6 +22,7 @@ const NODE_ENV = process.env.NODE_ENV
 /** middleware */
 app.use(morgan(':method :url :status'))
 app.use(express.json())
+app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static('./src/lib'))
 app.set('views', path.join(__dirname, './src/views'))
