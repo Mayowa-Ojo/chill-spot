@@ -5,19 +5,31 @@
       <form action="" class="ui form">
         <div class="field">
           <label for="">Name</label>
-          <input type="text" name="name" placeholder="enter your fullname">
+          <div class="ui labeled input">
+            <div class="ui label"><i class="address card outline icon"></i></div>
+            <input type="text" name="name" placeholder="enter your fullname">
+          </div>
         </div>
         <div class="field">
           <label for="">Email</label>
-          <input type="email" name="email" placeholder="please enter a valid email">
+          <div class="ui labeled input">
+            <div class="ui label"><i class="envelope outline icon"></i></div>
+            <input type="email" name="email" placeholder="please enter a valid email">
+          </div>
         </div>
         <div class="field">
           <label for="">Password</label>
-          <input type="password" name="password" placeholder="choose a password">
+          <div class="ui labeled input">
+            <div class="ui label"><i class="lock open icon"></i></div>
+            <input type="password" name="password" placeholder="choose a password">
+          </div>
         </div>
         <div class="field">
           <label for="">Confirm Password</label>
-          <input type="password" name="confirm-password" placeholder="please confirm your password">
+          <div class="ui labeled input">
+            <div class="ui label"><i class="lock icon"></i></div>
+            <input type="password" name="confirm-password" placeholder="please confirm your password">
+          </div>
         </div>
         <div class="field">
           <div class="ui checkbox">
@@ -29,6 +41,16 @@
           <div class="visible content">Create account</div>
           <div class="hidden content">
             <i class="plus icon"></i>
+          </div>
+        </div>
+
+        <div class="ui styled fluid accordion">
+          <div class="title">
+            <i class="arrow alternate circle right outline icon"></i>
+            Already have an account?
+          </div>
+          <div class="content">
+            <p><a href="/users/login">Sign In</a></p>
           </div>
         </div>
       </form>

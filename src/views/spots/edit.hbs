@@ -1,0 +1,64 @@
+<div class="main-wrapper">
+  <section class="new-spot-form">
+    <div class="ui segment">
+      <div class="ui center aligned dividing header">Edit Spot</div>
+      <form action="/spots/{{spot.id}}/edit?_method=PUT" class="ui form" method="POST">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" name="name" placeholder="Name" value="{{spot.name}}">
+        </div>
+        <div class="two fields">
+          <div class="field">
+            <label>Location</label>
+            <input type="text" name="location" placeholder="Location" value="{{spot.location}}">
+          </div>
+          <div class="field">
+            <label>Price-range</label>
+            <input type="text" name="price" placeholder="Enter a price range" value="{{spot.price_range}}">
+          </div>
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea name="description" rows="4">{{spot.description}}</textarea>
+        </div>
+        <div class="field">
+            <label>Image</label>
+            <input type="text" name="image" placeholder="Image" value="{{spot.image}}">
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <div class="ui selection dropdown">
+            <input type="hidden" name="category" value="{{spot.category}}">
+            <i class="dropdown icon"></i>
+            <div class="default text">Category</div>
+            <div class="menu">
+              <div class="item" data-value="restaurant">restaurant</div>
+              <div class="item" data-value="bar">bar</div>
+              <div class="item" data-value="lounge">lounge</div>
+              <div class="item" data-value="mall">mall</div>
+              <div class="item" data-value="beach">beach</div>
+              <div class="item" data-value="resort">resort</div>
+            </div>
+          </div>
+        </div>
+        {{!-- <button class="fluid ui button">Add this spot</button> --}}
+        <div class="btn-bottom">
+          <div class="ui animated button" tabindex="0">
+            <a href="/spots">
+              <div class="visible content">Go Back</div>
+              <div class="hidden content">
+                <i class="arrow alternate circle left outline icon"></i>
+              </div>
+            </a>
+          </div>
+          <button class="ui animated button" type="submit">
+            <div class="visible content">Save</div>
+            <div class="hidden content">
+              <i class="check circle outline icon"></i>
+            </div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>

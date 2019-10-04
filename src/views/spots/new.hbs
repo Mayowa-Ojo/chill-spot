@@ -2,31 +2,31 @@
   <section class="new-spot-form">
     <div class="ui segment">
       <div class="ui center aligned dividing header">Add New Spot</div>
-      <form action="" class="ui form">
+      <form action="/spots" class="ui form" method="POST">
         <div class="field">
-          <label for="">Name</label>
+          <label>Name</label>
           <input type="text" name="name" placeholder="Name">
         </div>
         <div class="two fields">
           <div class="field">
-            <label for="">Location</label>
+            <label>Location</label>
             <input type="text" name="location" placeholder="Location">
           </div>
           <div class="field">
-            <label for="">Price-range</label>
+            <label>Price-range</label>
             <input type="text" name="price" placeholder="Enter a price range">
           </div>
         </div>
         <div class="field">
-          <label for="">Description</label>
+          <label>Description</label>
           <textarea name="description" rows="4"></textarea>
         </div>
         <div class="field">
-            <label for="">Image</label>
+            <label>Image</label>
             <input type="text" name="image" placeholder="Image">
-          </div>
+        </div>
         <div class="field">
-          <label for="">Category</label>
+          <label>Category</label>
           <div class="ui selection dropdown">
             <input type="hidden" name="category">
             <i class="dropdown icon"></i>
@@ -34,26 +34,29 @@
             <div class="menu">
               <div class="item" data-value="restaurant">restaurant</div>
               <div class="item" data-value="bar">bar</div>
-              <div class="item" data-value="lounge">Lounge</div>
+              <div class="item" data-value="lounge">lounge</div>
               <div class="item" data-value="mall">mall</div>
               <div class="item" data-value="beach">beach</div>
+              <div class="item" data-value="beach">resort</div>
             </div>
           </div>
         </div>
         {{!-- <button class="fluid ui button">Add this spot</button> --}}
         <div class="btn-bottom">
           <div class="ui animated button" tabindex="0">
-            <div class="visible content">Go back</div>
-            <div class="hidden content">
-              <i class="arrow alternate circle left outline icon"></i>
-            </div>
+            <a href="/spots">
+              <div class="visible content">Go back</div>
+              <div class="hidden content">
+                <i class="arrow alternate circle left outline icon"></i>
+              </div>
+            </a>
           </div>
-          <div class="ui animated button" tabindex="0">
+          <button class="ui animated button" type="submit">
             <div class="visible content">Add this spot</div>
             <div class="hidden content">
               <i class="plus icon"></i>
             </div>
-          </div>
+          </button>
         </div>
       </form>
     </div>

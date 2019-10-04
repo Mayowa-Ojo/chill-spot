@@ -4,7 +4,13 @@
       <div class="six wide column">
         <div class="ui segment">
           {{#if error}}
-          <h1 class="ui brown header">{{spot.name}}</h1>
+          <div class="top-header">              
+            <h1 class="ui brown header">{{spot.name}}</h1>            
+            <span>
+              <a href="/spots/{{spot.id}}/edit"><i class="edit outline icon"></i></a>
+              <a href="/spots/{{spot.id}}/delete"><i class="trash alternate outline icon"></i></a>
+            </span>
+          </div>
           {{!-- main info --}}
           <p>{{spot.description}}</p>
           
@@ -17,6 +23,11 @@
           <div class="ui label">
             <i class="tag icon"></i> {{spot.price_range}}
           </div>
+          {{#if spot.category}}
+            <div class="ui label">
+              {{spot.category}}
+            </div>
+          {{/if}}
           {{!-- meta information --}}
           <div class="ui feed">
             <div class="event">
@@ -89,10 +100,12 @@
                 </div>
               </div>
               <div class="ui animated mini button" tabindex="0">
-                <div class="visible content">Back</div>
-                <div class="hidden content">
-                  <i class="comment alternate outline icon"></i>
-                </div>
+                <a href="/spots">
+                  <div class="visible content">Back</div>
+                  <div class="hidden content">
+                    <i class="angle double left icon"></i>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
