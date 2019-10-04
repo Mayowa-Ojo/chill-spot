@@ -40,3 +40,11 @@ body {
 .ui.segment {
   padding: 2em 2.5em;
 }
+
+.ui.accordion {
+  margin-top: 1em;
+}
+
+.ui.accordion .content p {
+  text-align: center;
+}

@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 body {
   overflow: hidden;
 }
@@ -59,4 +64,23 @@ body {
 .btn-bottom {
   display: flex;
   justify-content: space-between;
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-header span {
+  position: relative;
+  top: 6px;
+}
+
+.top-header .trash.icon {
+  color: rgb(180, 12, 12);
+}
+
+.top-header .edit.icon {
+  color: steelblue;
+  margin-right: 1em;
 }
