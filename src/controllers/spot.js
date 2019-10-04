@@ -1,11 +1,12 @@
 const Spot = require('../models/spot')
+const { compare } = require('../helpers')
 
 exports.getSpots = (req, res) => {
   const css = "/styles/spots/index.css"
   Spot.findAll()
     .then(spots => {
       // console.log(spots)
-      res.render('./spots/index', {spots, css})
+      res.render('./spots/index', { spots, css })
     })
     .catch(err => res.status(404).json({message: err.message}))
 }
@@ -18,18 +19,78 @@ exports.getSpot = (req, res) => {
     .then(spot => {
       // console.log(spot.name)
       error = spot == null ? false : true
-      res.render('./spots/show', {spot, css, error})
+      res.render('./spots/show', { spot, css, error })
     })
     .catch(err => res.status(404).json({message: err.message}))
 }
 
 exports.newSpot = (req, res) => {
   const css = "/styles/spots/new.css"
-  res.render('./spots/new', {css})
+  res.render('./spots/new', { css })
 }
 
 exports.createSpot = (req, res) => {
-  Spot.create()
+  const { name, location, description, price, image, category } = req.body
+  const newSpot = {
+    name,
+    location,
+    description,
+    price_range: price,
+    image,
+    category
+  }
+
+  Spot.create(newSpot)
+    .then(spot => {
+      res.redirect('/spots')
+    })
+    .catch(err => res.status(500).json({message: err.message}))
+}
+
+exports.editSpotForm = (req, res) => {
+  const css = "/styles/spots/new.css"
+  const { id } = req.params
+  Spot.findByPk(id)
+    .then(spot => {
+      res.render('./spots/edit', { spot, css })
+    })
+    .catch(err => res.status(500).json({message: err.message}))
+}
+
+exports.editSpot = (req, res) => {
+  const { id } = req.params
+  const { name, location, description, price, image, category } = req.body
+  const updatedSpot = {
+    name,
+    location,
+    description,
+    price_range: price,
+    image,
+    category
+  }
+
+  Spot.findByPk(id)
+    .then(spot => {
+      // check which fields have chnaged using the compare helper fn
+      const changes = compare(spot.dataValues, updatedSpot)
+      // res.json({changes, spot, updatedSpot})
+      spot.update(updatedSpot, { fields: changes })
+        .then(updatedSpot => {
+          res.redirect('/spots')
+        })
+        .catch(err => res.status(500).json({message: err.message}))
+    })
+    .catch(err => res.status(500).json({message: err.message}))
+}
+
+exports.deleteSpot = (req, res) => {
+  const { id } = req.params
+  Spot.findByPk(id)
+    .then(spot => {
+      spot.destroy()
+      res.redirect('/spots')
+    })
+    .catch(err => res.status(500).json({message: err.message}))
 }
 
 /*exports.viewSpots = (req, res) => {
