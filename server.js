@@ -1,13 +1,14 @@
-const express = require('express')
-const env = require('dotenv')
-const path = require('path')
-const morgan = require('morgan')
-const exphbs = require('express-handlebars')
+const env            = require('dotenv')
+const path           = require('path')
+const morgan         = require('morgan')
+const exphbs         = require('express-handlebars')
+const express        = require('express')
 const methodOverride = require('method-override')
-// -------------------------------
+// *************************************************
 // relative imports
-const spotRouter = require('./src/routes/spot')
-const userRouter = require('./src/routes/user')
+const userRouter     = require('./src/routes/user')
+const spotRouter     = require('./src/routes/spot')
+const commentRouter  = require('./src/routes/comment')
   
 /** config */
 const app = express()
@@ -31,6 +32,7 @@ app.set('view engine', '.hbs')
 // express router
 app.use('/spots', spotRouter)
 app.use('/users', userRouter)
+app.use('/comments', commentRouter)
 
 
 app.get('/', (req, res) => {
