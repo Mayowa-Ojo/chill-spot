@@ -1,4 +1,4 @@
-const Spot = require('../models/spot')
+const { Spot, Comment } = require('../config/sequelize/associations')
 const { compare } = require('../helpers')
 
 exports.getSpots = (req, res) => {
@@ -15,11 +15,12 @@ exports.getSpot = (req, res) => {
    const css = "/styles/spots/show.css"
    const { id } = req.params
    let error
-   Spot.findByPk(id)
+   Spot.findByPk(id, { include: [Comment]})
     .then(spot => {
       // console.log(spot.name)
       error = spot == null ? false : true
       res.render('./spots/show', { spot, css, error })
+      // res.json(spot)
     })
     .catch(err => res.status(404).json({message: err.message}))
 }
@@ -30,19 +31,21 @@ exports.newSpot = (req, res) => {
 }
 
 exports.createSpot = (req, res) => {
-  const { name, location, description, price, image, category } = req.body
+  const { name, location, description, price, image, category, spotId_fk } = req.body
   const newSpot = {
     name,
     location,
     description,
     price_range: price,
     image,
-    category
+    category,
+    spotId_fk
   }
 
   Spot.create(newSpot)
     .then(spot => {
       res.redirect('/spots')
+      // res.json(spot)
     })
     .catch(err => res.status(500).json({message: err.message}))
 }

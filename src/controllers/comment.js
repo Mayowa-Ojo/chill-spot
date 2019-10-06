@@ -1,4 +1,4 @@
-const Comment = require('../models/comment')
+const { Comment, Spot } = require('../config/sequelize/associations')
 
 /** get all comments */
 exports.getComments = (req, res) => {
@@ -11,12 +11,19 @@ exports.getComments = (req, res) => {
 
 /** get single comment */
 // ***** unavailable ****
+exports.getComment = (req, res) => {
+  Comment.findByPk(req.params.id, { include: [Spot] })
+    .then(comment => res.json(comment))
+    .catch(err => res.status(404).json({message: err.message}))
+}
 
 /** create a comment */
 exports.createComment = (req, res) => {
+  const { key: spotId_fk } = req.query
   const { comment: content } = req.body
   const newComment = {
-    content
+    content,
+    spotId_fk
   }
   Comment.create(newComment)
     .then(comment => {
