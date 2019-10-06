@@ -73,28 +73,28 @@
             {{/each}}
 
             {{!-- add comment form --}}
-            <form action="" class="ui reply form">
+            <form action="/comments/?key={{spot.id}}" class="ui reply form" method="POST">
               <div class="field">
-                <textarea name="" id=""></textarea>
+                <textarea name="comment" id=""></textarea>
               </div>
-            </form>
 
-            <div class="btn-bottom">
-              <div class="ui animated mini button" tabindex="0">
-                <div class="visible content">Add comment</div>
-                <div class="hidden content">
-                  <i class="comment alternate outline icon"></i>
+              <div class="btn-bottom">
+                <button class="ui animated mini button" tabindex="0" type="submit">
+                  <div class="visible content">Add comment</div>
+                  <div class="hidden content">
+                    <i class="comment alternate outline icon"></i>
+                  </div>
+                </button>
+                <div class="ui animated mini button" tabindex="1">
+                  <a href="/spots">
+                    <div class="visible content">Back</div>
+                    <div class="hidden content">
+                      <i class="angle double left icon"></i>
+                    </div>
+                  </a>
                 </div>
               </div>
-              <div class="ui animated mini button" tabindex="0">
-                <a href="/spots">
-                  <div class="visible content">Back</div>
-                  <div class="hidden content">
-                    <i class="angle double left icon"></i>
-                  </div>
-                </a>
-              </div>
-            </div>
+            </form>
           </div>
 
           {{else}}
