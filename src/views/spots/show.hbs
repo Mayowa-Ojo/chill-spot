@@ -37,7 +37,7 @@
               <div class="content">
                 <div class="summary">
                   <a href="#" class="user">anonymous</a>
-                  <div class="date">8 days ago</div>
+                  <div class="date">{{timeFrame}}</div>
                 </div>
                 <div class="meta">
                   <a href="#" class="like">
@@ -50,40 +50,27 @@
               </div>
             </div>
           </div>
+
           {{!-- comments --}}
           <div class="ui threaded comments">
             <h3 class="ui dividing header">Comments</h3>
-            <div class="comment">
-              <a href="#" class="avatar">
-                <img src="/public/assets/svg/avatar-male.svg" alt="avatar placeholder">
-              </a>
-              <div class="content">
-                <a href="#" class="author">Mark</a>
-                <div class="metadata">
-                  <span class="date">Yesterday at 3:02PM</span>
-                </div>
-                <div class="text">This place looks awesome!</div>
-                <div class="actions">
-                  <a href="#" class="reply">Reply</a>
-                </div>
-              </div>
-            </div>
-            {{!---------------------------}}
-            <div class="comment">
-              <a href="#" class="avatar">
-                <img src="/public/assets/svg/avatar-female.svg" alt="avatar placeholder">
-              </a>
-              <div class="content">
-                <a href="#" class="author">Mark</a>
-                <div class="metadata">
-                  <span class="date">Yesterday at 3:02PM</span>
-                </div>
-                <div class="text">This place looks awesome!</div>
-                <div class="actions">
-                  <a href="#" class="reply">Reply</a>
+            {{#each spot.comments}}
+              <div class="comment">
+                <a href="#" class="avatar">
+                  <img src="/public/assets/svg/avatar-male.svg" alt="avatar placeholder">
+                </a>
+                <div class="content">
+                  <a href="#" class="author">Mark</a>
+                  <div class="metadata">
+                    <span class="date">Yesterday at 3:02PM</span>
+                  </div>
+                  <div class="text">{{this.content}}</div>
+                  <div class="actions">
+                    <a href="#" class="reply">Reply</a>
+                  </div>
                 </div>
               </div>
-            </div>
+            {{/each}}
 
             {{!-- add comment form --}}
             <form action="" class="ui reply form">
