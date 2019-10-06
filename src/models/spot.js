@@ -37,9 +37,6 @@ const Spot = sequelize.define('spot', {
   spotId_fk: {
     type: UUID
   }
-},
-{
-  timestamps: false
 })
 
 // create a model hook to set the id to a unique value
