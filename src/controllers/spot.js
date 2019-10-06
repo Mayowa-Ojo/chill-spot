@@ -1,5 +1,5 @@
 const { Spot, Comment } = require('../config/sequelize/associations')
-const { compare } = require('../helpers')
+const { compare, getTimeframe } = require('../helpers')
 
 exports.getSpots = (req, res) => {
   const css = "/styles/spots/index.css"
@@ -12,16 +12,17 @@ exports.getSpots = (req, res) => {
 }
 
 exports.getSpot = (req, res) => {
-   const css = "/styles/spots/show.css"
-   const { id } = req.params
-   let error
-   Spot.findByPk(id, { include: [Comment]})
+  const css = "/styles/spots/show.css"
+  const { id } = req.params
+  let error
+  Spot.findByPk(id, { include: [Comment]})
     .then(spot => {
-      // console.log(spot.name)
-      error = spot == null ? false : true
-      res.render('./spots/show', { spot, css, error })
-      // res.json(spot)
-    })
+    const timeFrame = getTimeframe(spot.createdAt)
+    // console.log(spot.name)
+    error = spot == null ? false : true
+    res.render('./spots/show', { spot, css, error, timeFrame })
+    // res.json(spot)
+  })
     .catch(err => res.status(404).json({message: err.message}))
 }
 
