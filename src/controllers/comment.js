@@ -17,7 +17,9 @@ exports.getComment = (req, res) => {
     .catch(err => res.status(404).json({message: err.message}))
 }
 
-/** create a comment */
+/** create a comment
+ *  query parameter: 'key'
+*/
 exports.createComment = (req, res) => {
   const { key: spotId_fk } = req.query
   const { comment: content } = req.body
@@ -27,7 +29,8 @@ exports.createComment = (req, res) => {
   }
   Comment.create(newComment)
     .then(comment => {
-      res.status(201).json({ comment })
+      // res.status(201).json({ comment })
+      res.redirect(`/spots/${spotId_fk}`)
     })
     .catch(err => res.status(500).json({message: err.message}))
 }
