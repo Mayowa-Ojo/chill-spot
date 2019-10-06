@@ -1,7 +1,7 @@
-const { STRING, DATE, UUID } = require('sequelize')
+const { STRING, UUID } = require('sequelize')
 const uuid = require('uuid/v4')
-/** --------------------------------------------- */
-const { sequelize } = require('../config/sequelize')
+// *************************************************
+const { sequelize } = require('../config/sequelize/sequelize')
 
 /** define a model for a chill spot */
 const Spot = sequelize.define('spot', {
@@ -33,6 +33,9 @@ const Spot = sequelize.define('spot', {
   category: {
     type: STRING,
     allowNull: true
+  },
+  spotId_fk: {
+    type: UUID
   }
 },
 {
@@ -42,13 +45,11 @@ const Spot = sequelize.define('spot', {
 // create a model hook to set the id to a unique value
 Spot.beforeValidate(function(spot, options) {
   return new Promise((resolve, reject) => {
-    spot.id = uuid()
+    const id = uuid()
+    spot.id = id
+    spot.spotId_fk = id
     return resolve(spot, options)
   })
 })
-
-// Spot.addHook('beforeValidate', (spot, options) => {
-//   spot.id = uuid()
-// })
 
 module.exports = Spot
