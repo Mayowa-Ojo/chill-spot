@@ -13,7 +13,8 @@ const commentRouter  = require('./src/routes/comment')
 /** config */
 const app = express()
 env.config()
-// require('./src/config/sequelize')
+
+require('./src/config/sequelize/associations')
 
 
 /** global variables */
