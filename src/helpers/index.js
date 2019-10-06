@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 /**
  *  @param {Object} base - object to be compared
  *  @param {Object} ref - reference for comparison
@@ -15,6 +17,15 @@ exports.compare = function (base, ref) {
     }
   }
   return diff
+}
+
+exports.getTimeframe = function(time) {
+  let format
+  // format = new Date(time).toLocaleDateString().split('/').reverse();
+  // [format[1], format[2]] = [format[2], format[1]]
+  // format = format.join('');
+  format = moment(time, 'YYYYMMDD').fromNow();
+  return format
 }
 
 module.exports = exports
