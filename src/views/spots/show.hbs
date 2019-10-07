@@ -43,8 +43,11 @@
                   <a href="#" class="like">
                     <i class="like icon"></i>23 likes
                   </a>
-                  <a href="#" class="like">
+                  <a href="#" class="">
                     <i class="comment outline icon"></i>42 comments
+                  </a>
+                  <a href="#" class="">
+                    <i class="star icon"></i>
                   </a>
                 </div>
               </div>
@@ -64,9 +67,19 @@
                   <div class="metadata">
                     <span class="date">Yesterday at 3:02PM</span>
                   </div>
-                  <div class="text">{{this.content}}</div>
+                  <div class="text {{@index}}">{{this.content}}</div>
+                  <input type="hidden" name="id" value="{{this.id}}">
+                  {{!-- <div class="ui mini fluid icon action input">
+                    <input type="text" placeholder="Search mini...">
+                    <button class="ui icon mini button">
+                      <i class="check circle icon"></i>
+                    </button>
+                  </div> --}}
                   <div class="actions">
-                    <a href="#" class="reply">Reply</a>
+                    <a href="/comments/{{this.id}}/reply" class="reply"><i class="reply icon"></i></a>
+                    <a href="/comments/{{this.id}}/like"><i class="heart outline icon"></i></a>
+                    <a href="/comments/{{this.id}}/delete"><i class="trash alternate outline icon"></i></a>
+                    <a href="#"><i class="edit outline icon"></i></a>
                   </div>
                 </div>
               </div>
