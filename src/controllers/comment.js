@@ -37,10 +37,26 @@ exports.createComment = (req, res) => {
 
 /** edit comment */
 exports.editComment = (req, res) => {
-
+  const { comment: content } = req.body
+  const { id } = req.params
+  Comment.findByPk(id)
+    .then(comment => {
+      comment.update({ content}, { fields: ['content']})
+        .then(updatedComment => {
+          res.redirect('back')
+        })
+        .catch(err => res.status(500).json({message: err.message}))
+    })
+    .catch(err => res.status(404).json({message: err.message}))
+  // res.redirect('back')
 }
 
 /** delete comment */
 exports.deleteComment = (req, res) => {
-
+  const { id } = req.params
+  Comment.findByPk(id)
+    .then(comment => {
+      comment.destroy()
+      res.redirect('back')
+    })
 }
