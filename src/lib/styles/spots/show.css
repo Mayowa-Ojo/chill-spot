@@ -84,3 +84,7 @@ body {
   color: steelblue;
   margin-right: 1em;
 }
+
+.ui.mini.fluid.icon {
+  margin: 0.5em 0;
+}

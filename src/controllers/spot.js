@@ -13,6 +13,8 @@ exports.getSpots = (req, res) => {
 
 exports.getSpot = (req, res) => {
   const css = "/styles/spots/show.css"
+  const script = "/scripts/index.js"
+
   const { id } = req.params
   let error
   Spot.findByPk(id, { include: [Comment]})
@@ -20,7 +22,12 @@ exports.getSpot = (req, res) => {
     const timeFrame = getTimeframe(spot.createdAt)
     // console.log(spot.name)
     error = spot == null ? false : true
-    res.render('./spots/show', { spot, css, error, timeFrame })
+    res.render('./spots/show', { 
+      spot, 
+      static: { css, script }, 
+      error, 
+      timeFrame
+    })
     // res.json(spot)
   })
     .catch(err => res.status(404).json({message: err.message}))
