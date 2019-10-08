@@ -34,4 +34,10 @@ exports.commentsLength = function(comments) {
   return comments.length
 }
 
+exports.checkPlural = function(likes) {
+  if(likes == 1) {
+    return 'like'
+  } else return 'likes'
+}
+
 module.exports = exports
