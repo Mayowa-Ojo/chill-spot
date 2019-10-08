@@ -1,5 +1,5 @@
 const { Spot, Comment } = require('../config/sequelize/associations')
-const { compare, getTimeframe } = require('../helpers')
+const { compare, getTimeframe, commentsLength } = require('../helpers')
 
 exports.getSpots = (req, res) => {
   const css = "/styles/spots/index.css"
@@ -26,7 +26,10 @@ exports.getSpot = (req, res) => {
       spot, 
       static: { css, script }, 
       error, 
-      timeFrame
+      timeFrame,
+      helpers: {
+        length: commentsLength
+      }
     })
     // res.json(spot)
   })
@@ -104,15 +107,14 @@ exports.deleteSpot = (req, res) => {
     .catch(err => res.status(500).json({message: err.message}))
 }
 
-/*exports.viewSpots = (req, res) => {
+exports.likeSpot = (req, res) => {
   const { id } = req.params
-  res.json(req.query)
-  Spot.findAll({
-    attributes: ['id', 'name', 'price_range'],
-    where: { id }
-  })
-    .then(spots => res.json(spots))
-    .catch(err => console.log(err.message))
-}*/
+  Spot.findByPk(id)
+    .then(spot => {
+      spot.increment('likes', { by: 1})
+      res.redirect('back')
+    })
+    .catch(err => res.status(500).json({message: err.message}))
+}
 
 module.exports = exports

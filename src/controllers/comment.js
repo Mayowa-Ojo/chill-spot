@@ -59,4 +59,16 @@ exports.deleteComment = (req, res) => {
       comment.destroy()
       res.redirect('back')
     })
+    .catch(err => res.status(500).json({message: err.message}))
+}
+
+/** like comment */
+exports.likeComment = (req, res) => {
+  const { id } = req.params
+  Comment.findByPk(id)
+    .then(comment => {
+      comment.increment('likes', { by: 1})
+      res.redirect('back')
+    })
+    .catch(err => res.status(500).json({message: err.message}))
 }
