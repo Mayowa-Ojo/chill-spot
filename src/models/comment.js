@@ -1,4 +1,4 @@
-const { STRING, UUID } = require('sequelize')
+const { STRING, UUID, INTEGER } = require('sequelize')
 const uuid = require('uuid/v4')
 // **********************************************
 const { sequelize } = require('../config/sequelize/sequelize')
@@ -8,11 +8,16 @@ const Comment = sequelize.define('comment', {
   id: {
     type: UUID,
     primaryKey: true,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   content: {
     type: STRING,
     allowNull: false
+  },
+  likes: {
+    type: INTEGER,
+    defaultValue: 0
   },
   spotId_fk: {
     type: UUID
