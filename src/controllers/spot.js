@@ -1,5 +1,5 @@
 const { Spot, Comment } = require('../config/sequelize/associations')
-const { compare, getTimeframe, commentsLength } = require('../helpers')
+const { compare, getTimeframe, commentsLength, checkPlural } = require('../helpers')
 
 exports.getSpots = (req, res) => {
   const css = "/styles/spots/index.css"
@@ -28,7 +28,8 @@ exports.getSpot = (req, res) => {
       error, 
       timeFrame,
       helpers: {
-        length: commentsLength
+        length: commentsLength,
+        isPlural: checkPlural
       }
     })
     // res.json(spot)
