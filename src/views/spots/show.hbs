@@ -37,7 +37,7 @@
               <div class="content">
                 <div class="summary">
                   <a href="#" class="user">anonymous</a>
-                  <div class="date">{{timeFrame}}</div>
+                  <div class="date">{{parseTimeFrame spot.createdAt}}</div>
                 </div>
                 <div class="meta">
                   <a href="/spots/{{spot.id}}/like" class="like">
@@ -65,16 +65,11 @@
                 <div class="content">
                   <a href="#" class="author">Mark</a>
                   <div class="metadata">
-                    <span class="date">Yesterday at 3:02PM</span>
+                    <span class="date">{{parseTimeFrame this.createdAt}}</span>
                   </div>
                   <div class="text {{@index}}">{{this.content}}</div>
                   <input type="hidden" name="id" value="{{this.id}}">
-                  {{!-- <div class="ui mini fluid icon action input">
-                    <input type="text" placeholder="Search mini...">
-                    <button class="ui icon mini button">
-                      <i class="check circle icon"></i>
-                    </button>
-                  </div> --}}
+                  
                   <div class="actions">
                     <a href="/comments/{{this.id}}/reply" class="reply"><i class="reply icon"></i></a>
                     <a href="/comments/{{this.id}}/like"><i class="heart outline icon"></i>{{this.likes}}</a>
