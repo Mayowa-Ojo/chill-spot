@@ -28,4 +28,10 @@ exports.getTimeframe = function(time) {
   return format
 }
 
+// ************************************
+// handlebars helpers
+exports.commentsLength = function(comments) {
+  return comments.length
+}
+
 module.exports = exports
