@@ -6,7 +6,10 @@ exports.getSpots = (req, res) => {
   Spot.findAll()
     .then(spots => {
       // console.log(spots)
-      res.render('./spots/index', { spots, css })
+      res.render('./spots/index', { 
+        spots,
+        static: { css } 
+      })
     })
     .catch(err => res.status(404).json({message: err.message}))
 }
@@ -37,7 +40,9 @@ exports.getSpot = (req, res) => {
 
 exports.newSpot = (req, res) => {
   const css = "/styles/spots/new.css"
-  res.render('./spots/new', { css })
+  res.render('./spots/new', { 
+    static: { css } 
+  })
 }
 
 exports.createSpot = (req, res) => {
@@ -65,7 +70,10 @@ exports.editSpotForm = (req, res) => {
   const { id } = req.params
   Spot.findByPk(id)
     .then(spot => {
-      res.render('./spots/edit', { spot, css })
+      res.render('./spots/edit', { 
+        spot, 
+        static: { css } 
+      })
     })
     .catch(err => res.status(500).json({message: err.message}))
 }
