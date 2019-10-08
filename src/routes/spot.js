@@ -2,7 +2,7 @@ const express = require('express')
 // --------------------------------
 const controllers = require('../controllers/spot')
 
-const { getSpots, getSpot, newSpot, createSpot, editSpotForm, editSpot, deleteSpot } = controllers
+const { getSpots, getSpot, newSpot, createSpot, editSpotForm, editSpot, deleteSpot, likeSpot } = controllers
 
 /** Spot routes */
 const router = express.Router()
@@ -27,6 +27,9 @@ router.put('/:id/edit', editSpot)
 
 // delete a spot from database
 router.get('/:id/delete', deleteSpot)
+
+// like a spot
+router.get('/:id/like', likeSpot)
 
 
 module.exports = router
