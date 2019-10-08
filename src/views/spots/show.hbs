@@ -40,11 +40,11 @@
                   <div class="date">{{timeFrame}}</div>
                 </div>
                 <div class="meta">
-                  <a href="#" class="like">
-                    <i class="like icon"></i>23 likes
+                  <a href="/spots/{{spot.id}}/like" class="like">
+                    <i class="like icon"></i>{{spot.likes}} likes
                   </a>
                   <a href="#" class="">
-                    <i class="comment outline icon"></i>42 comments
+                    <i class="comment outline icon"></i>{{length spot.comments}} comments
                   </a>
                   <a href="#" class="">
                     <i class="star icon"></i>
@@ -77,7 +77,7 @@
                   </div> --}}
                   <div class="actions">
                     <a href="/comments/{{this.id}}/reply" class="reply"><i class="reply icon"></i></a>
-                    <a href="/comments/{{this.id}}/like"><i class="heart outline icon"></i></a>
+                    <a href="/comments/{{this.id}}/like"><i class="heart outline icon"></i>{{this.likes}}</a>
                     <a href="/comments/{{this.id}}/delete"><i class="trash alternate outline icon"></i></a>
                     <a href="#"><i class="edit outline icon"></i></a>
                   </div>
