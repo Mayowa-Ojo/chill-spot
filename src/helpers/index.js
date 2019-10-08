@@ -19,15 +19,6 @@ exports.compare = function (base, ref) {
   return diff
 }
 
-exports.getTimeframe = function(time) {
-  let format
-  // format = new Date(time).toLocaleDateString().split('/').reverse();
-  // [format[1], format[2]] = [format[2], format[1]]
-  // format = format.join('');
-  format = moment(time, 'YYYYMMDD').fromNow();
-  return format
-}
-
 // ************************************
 // handlebars helpers
 exports.commentsLength = function(comments) {
@@ -38,6 +29,10 @@ exports.checkPlural = function(likes) {
   if(likes == 1) {
     return 'like'
   } else return 'likes'
+}
+
+exports.parseTimeFrame = function(timeFrame) {
+  return moment(timeFrame, 'YYYYMMDD').fromNow()
 }
 
 module.exports = exports
