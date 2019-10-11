@@ -36,7 +36,7 @@
               </div>
               <div class="content">
                 <div class="summary">
-                  <a href="#" class="user">anonymous</a>
+                  <a href="#" class="user">{{spot.user.username}}</a>
                   <div class="date">{{parseTimeFrame spot.createdAt}}</div>
                 </div>
                 <div class="meta">
@@ -81,7 +81,7 @@
             {{/each}}
 
             {{!-- add comment form --}}
-            <form action="/comments/?key={{spot.id}}" class="ui reply form" method="POST">
+            <form action="/comments/?spot={{spot.id}}&user={{spot.user.id}}" class="ui reply form" method="POST">
               <div class="field">
                 <textarea name="comment" id=""></textarea>
               </div>
