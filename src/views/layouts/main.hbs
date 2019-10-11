@@ -30,12 +30,29 @@
 
   
   <script>
+    // dropdown
     $('.ui.dropdown')
       .dropdown()
     ;
 
+    // accordion
     $('.ui.accordion')
       .accordion()
+    ;
+
+    // message alert
+    $('.message .close')
+      .on('click', function() {
+        $(this)
+          .closest('.message')
+          .transition('fade')
+        ;
+      })
+    ;
+
+    // checkbox
+    $('.ui.checkbox')
+      .checkbox()
     ;
   </script>
 </body>
