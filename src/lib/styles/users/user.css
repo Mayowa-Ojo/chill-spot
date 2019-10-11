@@ -24,7 +24,7 @@ body {
 .register-form {
   width: 30vw;
   height: 67vh;
-  margin: 8em auto;
+  margin: 6em auto;
   position: relative;
   z-index: 2;
 }
@@ -47,4 +47,8 @@ body {
 
 .ui.accordion .content p {
   text-align: center;
+}
+
+.ui.label {
+  padding: 0.5833em 0.2em 0.5833em 0.8em;
 }
