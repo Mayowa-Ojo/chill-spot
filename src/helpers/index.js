@@ -1,5 +1,5 @@
 const moment = require('moment')
-
+const Handlebars = require('handlebars')
 /**
  *  @param {Object} base - object to be compared
  *  @param {Object} ref - reference for comparison
@@ -33,6 +33,33 @@ exports.checkPlural = function(likes) {
 
 exports.parseTimeFrame = function(timeFrame) {
   return moment(timeFrame, 'YYYYMMDD').fromNow()
+}
+
+exports.displayFlashMessage = function(message) {
+  
+  if(message != '') {
+    let primaryMessage
+    let secondaryMessage
+
+    if(typeof message == 'object') {
+      primaryMessage = message[0]
+      secondaryMessage = message[1]
+    } else {
+      primaryMessage = message
+      secondaryMessage = null
+    }
+
+    const html = `
+    <div class="ui negative mini message">
+      <i class="close icon"></i>
+      <div class="header">
+        ${primaryMessage}
+      </div>
+      ${secondaryMessage ? `<p>${secondaryMessage}</p>` : ''}
+    </div>
+    `
+    return new Handlebars.SafeString(html)
+  } else return ''
 }
 
 module.exports = exports
