@@ -1,23 +1,27 @@
-const { Spot, Comment } = require('../config/sequelize/associations')
+const { Spot, Comment, User } = require('../config/sequelize/associations')
 const helpers = require('../helpers')
 
 const { compare, commentsLength, checkPlural, parseTimeFrame, displayFlashMessage, checkUser } = helpers
 
 exports.getSpots = (req, res) => {
   const css = "/styles/spots/index.css"
-  Spot.findAll()
-    .then(spots => {
-      // console.log(spots)
-      res.render('./spots/index', { 
-        spots,
-        static: { css },
-        helpers: {
-          displayFlashMessage,
-          checkUser
-        }
-      })
+  Spot.findAll({
+    include: [
+      { model: User, attributes: ['id', 'username', 'name', 'avatar']}
+    ]
+  })
+  .then(spots => {
+    // res.json(spots)
+    res.render('./spots/index', { 
+      spots,
+      static: { css },
+      helpers: {
+        displayFlashMessage,
+        checkUser
+      }
     })
-    .catch(err => res.status(404).json({message: err.message}))
+  })
+  .catch(err => res.status(404).json({message: err.message}))
 }
 
 exports.getSpot = (req, res) => {
@@ -26,10 +30,16 @@ exports.getSpot = (req, res) => {
   const { id } = req.params
   let error
 
-  Spot.findByPk(id, { include: [Comment]})
+  Spot.findByPk(id, 
+    { 
+      include: [
+        { model: Comment},
+        { model: User, attributes: ['id', 'username', 'name', 'avatar']}
+      ]    
+    })
     .then(spot => {
       error = spot == null ? false : true
-
+      // res.json(spot)
       res.render('./spots/show', { 
         spot, 
         static: { css, script }, 
@@ -51,12 +61,14 @@ exports.newSpot = (req, res) => {
     static: { css },
     helpers: {
       checkUser
-    }
+    },
+    userId: req.user.id
   })
 }
 
 exports.createSpot = (req, res) => {
-  const { name, location, description, price, image, category, spotId_fk } = req.body
+  const { name, location, description, price, image, category } = req.body
+  const { user: userId_fk } = req.query
   const newSpot = {
     name,
     location,
@@ -64,7 +76,7 @@ exports.createSpot = (req, res) => {
     price_range: price,
     image,
     category,
-    spotId_fk
+    userId_fk
   }
 
   Spot.create(newSpot)

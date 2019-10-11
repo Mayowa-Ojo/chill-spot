@@ -1,18 +1,23 @@
-const { Comment, Spot } = require('../config/sequelize/associations')
+const { Comment, Spot, User } = require('../config/sequelize/associations')
 
 /** get all comments */
 exports.getComments = (req, res) => {
-  Comment.findAll()
-    .then(comments => {
-      res.status(201).json(comments)
-    })
-    .catch(err => res.status(500).json({message: err.message}))
+  Comment.findAll({
+    include: [
+      { model: User, attributes: ['id', 'name', 'username', 'avatar']},
+      { model: Spot, attributes: ['id', 'name']}
+    ]
+  })
+  .then(comments => {
+    res.status(201).json(comments)
+  })
+  .catch(err => res.status(500).json({message: err.message}))
 }
 
 /** get single comment */
 // ***** unavailable ****
 exports.getComment = (req, res) => {
-  Comment.findByPk(req.params.id, { include: [Spot] })
+  Comment.findByPk(req.params.id, { include: [Spot, User] })
     .then(comment => res.json(comment))
     .catch(err => res.status(404).json({message: err.message}))
 }
@@ -21,11 +26,12 @@ exports.getComment = (req, res) => {
  *  query parameter: 'key'
 */
 exports.createComment = (req, res) => {
-  const { key: spotId_fk } = req.query
+  const { spot: spotId_fk, user: userId_fk } = req.query
   const { comment: content } = req.body
   const newComment = {
     content,
-    spotId_fk
+    spotId_fk,
+    userId_fk
   }
   Comment.create(newComment)
     .then(comment => {
