@@ -1,7 +1,7 @@
 {
   "name": "chill-spot",
   "version": "1.0.0",
-  "description": "Fullstack Node.js application with express, ejs and MongoDB",
+  "description": "Fullstack Node.js application with express, handlebars and MongoDB",
   "main": "server.js",
   "scripts": {
     "test": "mocha",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Mayowa-Ojo/chill-spot#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
