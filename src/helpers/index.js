@@ -6,6 +6,13 @@ const Handlebars = require('handlebars')
  *  @returns {Array} - array containing the properties that differ
  */
 
+const toUppercase = function(str) {
+  const first = str.slice(0, 1)
+  const rest = str.slice(1, str.length)
+  
+  return `${first.toUpperCase()}${rest}`
+}
+
 exports.compare = function (base, ref) {
   const diff = new Array
   
@@ -35,8 +42,15 @@ exports.parseTimeFrame = function(timeFrame) {
   return moment(timeFrame, 'YYYYMMDD').fromNow()
 }
 
-exports.displayFlashMessage = function(message) {
-  
+exports.displayFlashMessage = function(message, type) {
+  let classType
+
+  if(type == 'success') {
+    classType = 'success'
+  } else if(type == 'error') {
+    classType = 'negative'
+  }
+
   if(message != '') {
     let primaryMessage
     let secondaryMessage
@@ -50,7 +64,7 @@ exports.displayFlashMessage = function(message) {
     }
 
     const html = `
-    <div class="ui negative mini message">
+    <div class="ui ${classType} mini message">
       <i class="close icon"></i>
       <div class="header">
         ${primaryMessage}
@@ -60,6 +74,19 @@ exports.displayFlashMessage = function(message) {
     `
     return new Handlebars.SafeString(html)
   } else return ''
+}
+
+exports.checkUser = function(currentUser) {
+  let route
+
+  if(currentUser != undefined) {
+    route = 'logout'
+  } else {
+    route = 'login'
+  }
+
+  const html = `<a href="/users/${route}" class="item">${toUppercase(route)}</a>`
+  return new Handlebars.SafeString(html)
 }
 
 module.exports = exports
