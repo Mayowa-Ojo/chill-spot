@@ -32,10 +32,16 @@ exports.commentsLength = function(comments) {
   return comments.length
 }
 
-exports.checkPlural = function(likes) {
-  if(likes == 1) {
-    return 'like'
-  } else return 'likes'
+exports.checkPlural = function(arg) {
+  if(typeof arg !== 'number') {
+    if(arg.length == 1) {
+      return 'comment'
+    } else return 'comments'
+  } else {
+    if(arg == 1) {
+      return 'like'
+    } else return 'likes'
+  }
 }
 
 exports.parseTimeFrame = function(timeFrame) {
