@@ -1,5 +1,7 @@
 const { Spot, Comment } = require('../config/sequelize/associations')
-const { compare, commentsLength, checkPlural, parseTimeFrame } = require('../helpers')
+const helpers = require('../helpers')
+
+const { compare, commentsLength, checkPlural, parseTimeFrame, displayFlashMessage, checkUser } = helpers
 
 exports.getSpots = (req, res) => {
   const css = "/styles/spots/index.css"
@@ -8,7 +10,11 @@ exports.getSpots = (req, res) => {
       // console.log(spots)
       res.render('./spots/index', { 
         spots,
-        static: { css } 
+        static: { css },
+        helpers: {
+          displayFlashMessage,
+          checkUser
+        }
       })
     })
     .catch(err => res.status(404).json({message: err.message}))
@@ -31,7 +37,8 @@ exports.getSpot = (req, res) => {
         helpers: {
           length: commentsLength,
           isPlural: checkPlural,
-          parseTimeFrame
+          parseTimeFrame,
+          checkUser
         }
       })
     })
@@ -41,7 +48,10 @@ exports.getSpot = (req, res) => {
 exports.newSpot = (req, res) => {
   const css = "/styles/spots/new.css"
   res.render('./spots/new', { 
-    static: { css } 
+    static: { css },
+    helpers: {
+      checkUser
+    }
   })
 }
 
@@ -72,7 +82,8 @@ exports.editSpotForm = (req, res) => {
     .then(spot => {
       res.render('./spots/edit', { 
         spot, 
-        static: { css } 
+        static: { css },
+        checkUser
       })
     })
     .catch(err => res.status(500).json({message: err.message}))

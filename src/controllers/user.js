@@ -1,7 +1,7 @@
 const passport = require('passport')
 // *********************************
 const { User } = require('../config/sequelize/associations')
-const { displayFlashMessage } = require('../helpers')
+const { displayFlashMessage, checkUser } = require('../helpers')
 
 /** show sign up form */
 exports.registerForm = (_, res) => {
@@ -9,7 +9,8 @@ exports.registerForm = (_, res) => {
   res.render('./users/register', {
     static: { css },
     helpers: {
-      displayFlashMessage
+      displayFlashMessage,
+      checkUser
     }
   })
 }
@@ -45,7 +46,7 @@ exports.registerUser = (req, res) => {
         .then(user => {
           // res.json(user)
           passport.authenticate('local')(req, res, () => {
-            req.flash('success', `Your account has been created, ${user.username}`)
+            req.flash('success', [`Welcome to chill-spot, ${user.username}`, 'You are now logged in'])
             res.redirect('/spots')
             // res.json({message: `Your account has been created, ${user.username}`})
           })
@@ -65,7 +66,8 @@ exports.loginForm = (_, res) => {
   res.render('./users/login', { 
     static: { css },
     helpers: {
-      displayFlashMessage
+      displayFlashMessage,
+      checkUser
     }
   })
 }
@@ -77,6 +79,12 @@ exports.loginUser = (req, res, next) => {
     failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next)
+}
+
+exports.userLogout = (req, res) => {
+  req.logout()
+  req.flash('success', ['You are now logged out', 'please come back soon'])
+  res.redirect('/spots')
 }
 
 module.exports = exports
