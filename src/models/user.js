@@ -47,6 +47,9 @@ const User = sequelize.define('user', {
   },
   spotId_fk: {
     type: UUID
+  },
+  userId_fk: {
+    type: UUID
   }
 })
 
@@ -62,7 +65,9 @@ User.prototype.validatePassword = async function(password) {
 // create a model hook to set the id
 User.addHook('beforeValidate', (user, options) => {
   // set id field to uuid
-  user.id = uuid()  
+  const id = uuid()
+  user.id = id
+  user.userId_fk = id  
 })
 
 User.addHook('afterValidate', async (user, options) => {

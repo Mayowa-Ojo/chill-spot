@@ -40,18 +40,30 @@ const Spot = sequelize.define('spot', {
     defaultValue: 0
   },
   spotId_fk: {
-    type: UUID
+    type: UUID,
+    // allowNull: false
+  },
+  userId_fk: {
+    type: UUID,
+    // allowNull: false
   }
 })
 
 // create a model hook to set the id to a unique value
-Spot.beforeValidate(function(spot, options) {
-  return new Promise((resolve, reject) => {
-    const id = uuid()
-    spot.id = id
-    spot.spotId_fk = id
-    return resolve(spot, options)
-  })
+// Spot.beforeValidate(function(spot, options) {
+//   return new Promise((resolve, reject) => {
+//     const id = uuid()
+//     spot.id = id
+//     spot.spotId_fk = id
+//     return resolve(spot, options)
+//   })
+// })
+
+Spot.addHook('beforeValidate', (spot, options) => {
+  // set id field to uuid
+  const id = uuid()
+  spot.id = id
+  spot.spotId_fk = id  
 })
 
 module.exports = Spot

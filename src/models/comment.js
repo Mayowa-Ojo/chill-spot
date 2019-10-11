@@ -20,7 +20,12 @@ const Comment = sequelize.define('comment', {
     defaultValue: 0
   },
   spotId_fk: {
-    type: UUID
+    type: UUID,
+    allowNull: false
+  },
+  userId_fk: {
+    type: UUID,
+    allowNull: false
   }
 })
 
