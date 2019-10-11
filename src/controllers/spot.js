@@ -33,7 +33,10 @@ exports.getSpot = (req, res) => {
   Spot.findByPk(id, 
     { 
       include: [
-        { model: Comment},
+        { 
+          model: Comment,
+          include: [ { model: User, attributes: ['id', 'username', 'name', 'avatar']}]
+        },
         { model: User, attributes: ['id', 'username', 'name', 'avatar']}
       ]    
     })
@@ -49,7 +52,8 @@ exports.getSpot = (req, res) => {
           isPlural: checkPlural,
           parseTimeFrame,
           checkUser
-        }
+        },
+        currentUser: req.isAuthenticated() ? req.user.id : null
       })
     })
     .catch(err => res.status(404).json({message: err.message}))
