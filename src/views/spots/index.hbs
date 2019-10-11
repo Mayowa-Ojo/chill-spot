@@ -1,5 +1,4 @@
 <header class="ui container">
-  <h1>view all spots</h1>
   <div class="ui grid">
     <div class="four wide column">
       <div class="ui vertical menu">
@@ -24,10 +23,9 @@
       </div>
     </div>
     <div class="twelve wide stretched column">
+      {{ displayFlashMessage success 'success'}}
       <div class="ui segment">
         This is an stretched grid column. This segment will always match the tab height
-        {{error}}
-        {{success}}
       </div>
     </div>
   </div>

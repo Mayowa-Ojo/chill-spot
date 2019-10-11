@@ -2,7 +2,7 @@
   <section class="login-form">
     <div class="ui segment">
       <h3 class="ui center aligned dividing grey header">Sign In To Your Account</h3>
-      {{ displayFlashMessage error }}      
+      {{ displayFlashMessage error 'error'}}      
       <form action="/users/login" method="POST" class="ui form">
         <div class="field">
           <label for="">Email</label>

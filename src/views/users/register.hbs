@@ -2,7 +2,7 @@
   <section class="register-form">
     <div class="ui segment">
       <h3 class="ui center aligned dividing grey header">Create an Account</h3>
-      {{ displayFlashMessage error }}        
+      {{ displayFlashMessage error 'error'}}        
       <form action="/users/register" method="POST" class="ui form">
         <div class="field">
           <label for="">Name</label>
