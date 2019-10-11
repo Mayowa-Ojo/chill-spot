@@ -1,6 +1,7 @@
 const { sequelize } = require('./sequelize')
 const Spot = require('../../models/spot')
 const Comment = require('../../models/comment')
+const User = require('../../models/user')
 
 Spot.hasMany(Comment, { foreignKey: 'spotId_fk' })
 Comment.belongsTo(Spot, { foreignKey: 'spotId_fk' })
@@ -18,5 +19,6 @@ sequelize.sync({ force: false })
 
 module.exports = {
   Spot,
-  Comment
+  Comment,
+  User
 }
