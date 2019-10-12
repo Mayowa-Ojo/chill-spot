@@ -1,11 +1,14 @@
 const env            = require('dotenv')
 const path           = require('path')
 const flash          = require('connect-flash')
+const csrf           = require('csurf')
+const helmet         = require('helmet')
 const morgan         = require('morgan')
 const exphbs         = require('express-handlebars')
 const express        = require('express')
 const session        = require('express-session')
 const passport       = require('passport')
+const cookieParser   = require('cookie-parser')
 const methodOverride = require('method-override')
 // *************************************************
 // relative imports
@@ -26,10 +29,14 @@ const NODE_ENV = process.env.NODE_ENV
 const SECRET = process.env.SECRET
 
 /** middleware */
-app.use(morgan(':method :url :status'))
+app.use(helmet())
+app.use(morgan('dev'))
+app.use(cookieParser())
 // express parser
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+// csrf protection
+app.use(csrf({ cookie: true }))
 // method override
 app.use(methodOverride('_method'))
 app.use(express.static('./src/lib'))
