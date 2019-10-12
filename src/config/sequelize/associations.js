@@ -8,8 +8,14 @@ Spot.hasMany(Comment, { foreignKey: 'spotId_fk'})
 Comment.belongsTo(Spot, { foreignKey: 'spotId_fk'})
 User.hasMany(Spot, { foreignKey: 'userId_fk'})
 Spot.belongsTo(User, { foreignKey: 'userId_fk'})
-User.hasMany(Comment, { foreignKey: 'userId_fk'})
-Comment.belongsTo(User, { foreignKey: 'userId_fk'})
+User.hasMany(Comment, { 
+  foreignKey: 'userId_fk',
+  constraints: false
+})
+Comment.belongsTo(User, { 
+  foreignKey: 'userId_fk',
+  constraints: false
+})
 
 // sync database
 sequelize.sync({ force: false })
