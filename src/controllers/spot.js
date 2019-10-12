@@ -1,7 +1,7 @@
 const { Spot, Comment, User } = require('../config/sequelize/associations')
 const helpers = require('../helpers')
 
-const { compare, commentsLength, checkPlural, parseTimeFrame, displayFlashMessage, checkUser } = helpers
+const { compare, commentsLength, checkPlural, parseTimeFrame, displayFlashMessage, checkUser, displayUsername } = helpers
 
 exports.getSpots = (req, res) => {
   const css = "/styles/spots/index.css"
@@ -51,9 +51,10 @@ exports.getSpot = (req, res) => {
           length: commentsLength,
           isPlural: checkPlural,
           parseTimeFrame,
-          checkUser
+          checkUser,
+          displayUsername
         },
-        currentUser: req.isAuthenticated() ? req.user.id : null
+        currentUser: req.isAuthenticated() ? req.user.id : 'anonymous'
       })
     })
     .catch(err => res.status(404).json({message: err.message}))
