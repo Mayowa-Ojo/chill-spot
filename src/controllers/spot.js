@@ -93,20 +93,16 @@ exports.createSpot = (req, res) => {
 
 exports.editSpotForm = (req, res) => {
   const css = "/styles/spots/new.css"
-  const { id } = req.params
-  Spot.findByPk(id)
-    .then(spot => {
-      res.render('./spots/edit', { 
-        spot, 
-        static: { css },
-        checkUser
-      })
-    })
-    .catch(err => res.status(500).json({message: err.message}))
+  const spot = res.locals.spot
+
+  res.render('./spots/edit', { 
+    spot, 
+    static: { css },
+    checkUser
+  })    
 }
 
 exports.editSpot = (req, res) => {
-  const { id } = req.params
   const { name, location, description, price, image, category } = req.body
   const updatedSpot = {
     name,
@@ -116,39 +112,33 @@ exports.editSpot = (req, res) => {
     image,
     category
   }
-
-  Spot.findByPk(id)
-    .then(spot => {
-      // check which fields have chnaged using the compare helper fn
-      const changes = compare(spot.dataValues, updatedSpot)
-      // res.json({changes, spot, updatedSpot})
-      spot.update(updatedSpot, { fields: changes })
-        .then(updatedSpot => {
-          res.redirect('/spots')
-        })
-        .catch(err => res.status(500).json({message: err.message}))
+  const spot = res.locals.spot
+  // check which fields have chnaged using the compare helper fn
+  const changes = compare(spot.dataValues, updatedSpot)
+  // res.json({changes, spot, updatedSpot})
+  spot.update(updatedSpot, { fields: changes })
+    .then(updatedSpot => {
+      res.redirect('/spots')
     })
     .catch(err => res.status(500).json({message: err.message}))
+    
 }
 
 exports.deleteSpot = (req, res) => {
-  const { id } = req.params
-  Spot.findByPk(id)
-    .then(spot => {
-      spot.destroy()
+  const spot = res.locals.spot
+  // delete spot from database
+  spot.destroy()
+    .then(() => {
       res.redirect('/spots')
     })
     .catch(err => res.status(500).json({message: err.message}))
 }
 
 exports.likeSpot = (req, res) => {
-  const { id } = req.params
-  Spot.findByPk(id)
-    .then(spot => {
-      spot.increment('likes', { by: 1})
-      res.redirect('back')
-    })
-    .catch(err => res.status(500).json({message: err.message}))
+  const spot = res.locals.spot 
+  // increment the likes field
+  spot.increment('likes', { by: 1})
+  res.redirect('back')
 }
 
 module.exports = exports
