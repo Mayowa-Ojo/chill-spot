@@ -17,13 +17,12 @@ exports.getComments = (req, res) => {
 /** get single comment */
 // ***** unavailable ****
 exports.getComment = (req, res) => {
-  Comment.findByPk(req.params.id, { include: [Spot, User] })
-    .then(comment => res.json(comment))
-    .catch(err => res.status(404).json({message: err.message}))
+  const comment = res.locals.comment
+  res.json(comment)
 }
 
 /** create a comment
- *  query parameter: 'key'
+ *  query parameters: 'spot, user'
 */
 exports.createComment = (req, res) => {
   const { spot: spotId_fk, user: userId_fk } = req.query
@@ -31,7 +30,7 @@ exports.createComment = (req, res) => {
   const newComment = {
     content,
     spotId_fk,
-    userId_fk
+    userId_fk: userId_fk == 'anonymous' ? null : userId_fk
   }
   Comment.create(newComment)
     .then(comment => {
@@ -44,27 +43,21 @@ exports.createComment = (req, res) => {
 /** edit comment */
 exports.editComment = (req, res) => {
   const { comment: content } = req.body
-  const { id } = req.params
-  Comment.findByPk(id)
-    .then(comment => {
-      comment.update({ content}, { fields: ['content']})
-        .then(updatedComment => {
-          res.redirect('back')
-        })
-        .catch(err => res.status(500).json({message: err.message}))
+  const comment = res.locals.comment
+
+  comment.update({ content}, { fields: ['content']})
+    .then(updatedComment => {
+      res.redirect('back')
     })
-    .catch(err => res.status(404).json({message: err.message}))
+    .catch(err => res.status(500).json({message: err.message}))
   // res.redirect('back')
 }
 
 /** delete comment */
 exports.deleteComment = (req, res) => {
-  const { id } = req.params
-  Comment.findByPk(id)
-    .then(comment => {
-      comment.destroy()
-      res.redirect('back')
-    })
+  const comment = res.locals.comment
+  comment.destroy()
+    .then(() => res.redirect('back'))
     .catch(err => res.status(500).json({message: err.message}))
 }
 
