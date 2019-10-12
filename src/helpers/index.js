@@ -15,9 +15,10 @@ const toUppercase = function(str) {
 
 exports.compare = function (base, ref) {
   const diff = new Array
+  const exceptions = ['id', 'user', 'userId_fk', 'spotId_fk', 'likes', 'createdAt', 'updatedAt']
   
   for(prop in base) {
-    if(prop == 'id') continue
+    if(exceptions.includes(prop)) continue
     
     if(base[prop] !== ref[prop]) {
       diff.push(prop)
