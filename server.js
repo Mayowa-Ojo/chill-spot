@@ -36,7 +36,7 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 // csrf protection
-app.use(csrf({ cookie: true }))
+// app.use(csrf({ cookie: true }))
 // method override
 app.use(methodOverride('_method'))
 app.use(express.static('./src/lib'))
