@@ -1,6 +1,8 @@
 const express = require('express')
 // --------------------------------
 const controllers = require('../controllers/spot')
+const { authorizeRoute, authorizeUser } = require('../middlewares/auth')
+const { getSpot: getSpotMiddleware } = require('../middlewares/spot')
 
 const { getSpots, getSpot, newSpot, createSpot, editSpotForm, editSpot, deleteSpot, likeSpot } = controllers
 
@@ -11,25 +13,25 @@ const router = express.Router()
 router.get('/', getSpots)
 
 // render new spot form 
-router.get('/new', newSpot)
+router.get('/new', authorizeRoute, newSpot)
 
 // create new spot
-router.post('/', createSpot)
+router.post('/', authorizeRoute, createSpot)
 
 // get single spot by id
 router.get('/:id', getSpot)
 
 // render edit spot form
-router.get('/:id/edit', editSpotForm)
+router.get('/:id/edit', getSpotMiddleware, authorizeUser, editSpotForm)
 
 // save edited spot
-router.put('/:id/edit', editSpot)
+router.put('/:id/edit', getSpotMiddleware, authorizeUser, editSpot)
 
 // delete a spot from database
-router.get('/:id/delete', deleteSpot)
+router.get('/:id/delete', getSpotMiddleware, authorizeUser, deleteSpot)
 
 // like a spot
-router.get('/:id/like', likeSpot)
+router.get('/:id/like', getSpotMiddleware, likeSpot)
 
 
 module.exports = router
