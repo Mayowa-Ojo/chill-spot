@@ -86,14 +86,22 @@ exports.displayFlashMessage = function(message, type) {
 exports.checkUser = function(currentUser) {
   let route
 
-  if(currentUser != undefined) {
-    route = 'logout'
-  } else {
+  if(currentUser == undefined || currentUser == 'anonymous') {
     route = 'login'
+  } else {
+    route = 'logout'
   }
 
   const html = `<a href="/users/${route}" class="item">${toUppercase(route)}</a>`
   return new Handlebars.SafeString(html)
+}
+
+exports.displayUsername = function(arg) {
+  if(arg == null) {
+    return 'anonymous'
+  } else {
+    return arg.username
+  }
 }
 
 module.exports = exports
