@@ -14,10 +14,11 @@ exports.authorizeRoute = function(req, res, next) {
 
 // check logged in user and author privileges
 exports.authorizeUser = function(req, res, next) {
+  const origin = res.locals.origin
   // check if user is logged in
   if(req.isAuthenticated()) {
     // check if current user is the author
-    if(req.user.id == res.locals.spot.user.id) {
+    if(req.user.id == res.locals[origin].user.id) {
       next()
     } else {
       req.flash('error', 'You\'re not authorized to do that')

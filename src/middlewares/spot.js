@@ -12,6 +12,8 @@ exports.getSpot = function(req, res, next) {
     }
     // store found spot on response object and pass to callback
     res.locals.spot = spot
+    // set req origin
+    res.locals.origin = 'spot'
     next()
   })
   .catch(err => {
