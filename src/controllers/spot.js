@@ -28,7 +28,7 @@ exports.getSpot = (req, res) => {
   const css = "/styles/spots/show.css"
   const script = "/scripts/index.js"
   const { id } = req.params
-  let error
+  let isEmpty
 
   Spot.findByPk(id, 
     { 
@@ -41,18 +41,20 @@ exports.getSpot = (req, res) => {
       ]    
     })
     .then(spot => {
-      error = spot == null ? false : true
+      // check if spot is not found
+      isEmpty = spot == null ? true : false
       // res.json(spot)
       res.render('./spots/show', { 
         spot, 
         static: { css, script }, 
-        error,
+        isEmpty,
         helpers: {
           length: commentsLength,
           isPlural: checkPlural,
           parseTimeFrame,
           checkUser,
-          displayUsername
+          displayUsername,
+          displayFlashMessage
         },
         currentUser: req.isAuthenticated() ? req.user.id : 'anonymous'
       })
