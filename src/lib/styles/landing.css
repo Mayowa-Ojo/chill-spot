@@ -8,14 +8,27 @@ body {
   background: black;
 }
 
-.header {
+a {
+  text-decoration: none
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.landing-header {
   width: 100%;
   height: 100vh;
   position: relative;
   background: url('/public/assets/images/christmas-1911637_1280.jpg') center center/cover !important;
 }
 
-.header::after {
+.landing-header::after {
   content: '';
   position: absolute;
   top: 0;
@@ -32,6 +45,83 @@ nav.ui.secondary.menu {
   padding-top: 1.5em;
 }
 
-nav.ui.secondary.menu .item, nav.ui.secondary.menu .active.item {
+nav.ui.secondary.menu .active.item {
+  color: yellow;
+  font-size: 1.2rem;
+}
+
+nav.ui.secondary.menu .active.item:hover {
   color: white;
+}
+
+.ui.basic.button a {
+  color: white;
+}
+
+.landing-wrapper {
+  border: 1px solid rgba(24, 24, 24, 0.1);
+  position: relative;
+  z-index: 2;
+  height: 90%;
+}
+
+.landing-container {
+  /* border: 1px solid white; */
+  width: 40%;
+  margin: 0 auto;
+  height: 20em;;
+}
+
+h1.ui.header {
+  color: white;
+  font-size: 2.5rem;
+}
+
+.landing-container p {
+  color: white;
+  text-align: center;
+}
+
+.list {
+  width: 80%;
+  height: 5em;
+  margin: 0 auto;
+  padding: 1.5em 1em;
+  border: 2px solid yellow;
+}
+
+.list ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.list a {
+  color: yellow;  
+}
+
+.list a:hover {
+  color: white;
+  border-bottom: 1px solid yellow;
+  padding-bottom: 5px;
+}
+
+#landing-banner {
+  /* border: 1px solid white; */
+  width: 30%;
+  height: 10em;
+  margin: 5em auto;
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+
+#landing-banner .logo {
+  width: 30%;
+  height: 10em;
+}
+
+#landing-banner h1 {
+  margin-top: 0.6em;
+  margin-left: 0.5em;
+  font-size: 4rem;
 }
