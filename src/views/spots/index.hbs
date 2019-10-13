@@ -24,8 +24,15 @@
     </div>
     <div class="twelve wide stretched column">
       {{ displayFlashMessage success 'success'}}
+      {{ displayFlashMessage error 'error'}}
       <div class="ui segment">
-        This is an stretched grid column. This segment will always match the tab height
+        <div class="header-container">
+          <h1 class="ui header" id="header-message">Featured Locations</h1>
+          <p class="header-sub--message"> <i class="angle double right icon"></i> Over <span>1000</span> locations with images, price range, ratings and reviews</p>
+          <p class="header-sub--message"> <i class="angle double right icon"></i> <span>Filter</span> locations by category</p>
+          <p class="header-sub--message"> <i class="angle double right icon"></i> <span>Search</span> for a familiar location and get similar results</p>
+          <p class="header-sub--message"> <i class="angle double right icon"></i> <span>Sign up</span> and start posting awesome places you've been to!</p>
+        </div>
       </div>
     </div>
   </div>

@@ -3,7 +3,10 @@
     <div class="ui centered grid container">
       <div class="six wide column">
         <div class="ui segment">
-          {{#if error}}
+          {{#if isEmpty}}
+            <h2 class="ui centered grey header">Not Found</h2>
+          {{else}}
+          {{ displayFlashMessage error 'error'}}
           <div class="top-header">              
             <h1 class="ui brown header">{{spot.name}}</h1>            
             <span>
@@ -103,10 +106,7 @@
                 </div>
               </div>
             </form>
-          </div>
-
-          {{else}}
-            <h2 class="ui centered grey header">Not Found</h2>
+          </div>          
           {{/if}}
         </div>
       </div>
