@@ -4,6 +4,7 @@ const helpers = require('../helpers')
 const { compare, commentsLength, checkPlural, parseTimeFrame, displayFlashMessage, checkUser, displayUsername } = helpers
 
 exports.getSpots = (req, res) => {
+  const script = "/scripts/index.js"
   const css = "/styles/spots/index.css"
   Spot.findAll({
     include: [
@@ -14,7 +15,7 @@ exports.getSpots = (req, res) => {
     // res.json(spots)
     res.render('./spots/index', { 
       spots,
-      static: { css },
+      static: { css, script },
       helpers: {
         displayFlashMessage,
         checkUser
@@ -26,7 +27,7 @@ exports.getSpots = (req, res) => {
 
 exports.getSpot = (req, res) => {
   const css = "/styles/spots/show.css"
-  const script = "/scripts/index.js"
+  const script = "/scripts/show.js"
   const { id } = req.params
   let isEmpty
 
