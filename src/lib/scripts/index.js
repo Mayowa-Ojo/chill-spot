@@ -22,4 +22,26 @@ function toggleActiveLink(e) {
   e.target.classList.add('active', 'teal')
 }
 
-// console.log(links)
+/*********************************
+  search functionality
+ ********************************
+const searchInput = [...$('.ui.icon.search.input input')][0]
+
+// add event listener to the search icon
+const searchIcon = [...$('.ui.icon.search.input i')][0]
+searchIcon.addEventListener('click', handleSearch)
+
+function handleSearch(e) {
+  const query = searchInput.value
+  const url = `http://localhost:8000/spots/search?search=name&q=${query}`
+  // console.log(data)
+  $.get(url)
+    .done(res => {
+      console.log(res)
+    })
+    .fail(err => {
+      console.error(err)
+  })
+  // clean up search field
+  searchInput.value = ''
+} */
