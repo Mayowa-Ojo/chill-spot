@@ -10,19 +10,31 @@
           Popular
           <i class="heart icon"></i>
         </a>
-        <a class="item">
-          By category
+        <div class="ui dropdown item">
+          Categories
           <i class="tags icon"></i>
-        </a>
+          <div class="menu">
+            <a class="item">Restaurant</a>
+            <a class="item">Lounge</a>
+            <a class="item">Bar</a>
+            <a class="item">Mall</a>
+            <a class="item">Beach</a>
+            <a class="item">Eatery</a>
+            <a class="item">Cinema</a>
+            <a class="item">Park</a>
+          </div>
+        </div>
         <a class="item">
           By Location
           <i class="location arrow icon"></i>
         </a>
         <div class="item">
-          <div class="ui transparent icon input">
-            <input type="text" placeholder="Search locations...">
-            <i class="search icon"></i>
-          </div>
+          <form action="/spots/search?search=name" method="post">
+            <div class="ui icon input search">
+              <input type="text" name="search" placeholder="Search locations...">
+              <i class="circular search icon"></i>
+            </div>
+          </form>
         </div>
       </div>
     </div>
