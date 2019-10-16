@@ -4,7 +4,18 @@ const controllers = require('../controllers/spot')
 const { authorizeRoute, authorizeUser } = require('../middlewares/auth')
 const { getSpot: getSpotMiddleware } = require('../middlewares/spot')
 
-const { getSpots, getSpot, newSpot, createSpot, editSpotForm, editSpot, deleteSpot, likeSpot } = controllers
+const { 
+  getSpots, 
+  getSpot, 
+  newSpot, 
+  createSpot, 
+  editSpotForm, 
+  editSpot, 
+  deleteSpot, 
+  likeSpot, 
+  filterSpots, 
+  searchSpots 
+} = controllers
 
 /** Spot routes */
 const router = express.Router()
@@ -17,6 +28,9 @@ router.get('/new', authorizeRoute, newSpot)
 
 // create new spot
 router.post('/', authorizeRoute, createSpot)
+
+// search spots
+router.post('/search', searchSpots)
 
 // get single spot by id
 router.get('/:id', getSpot)
@@ -32,6 +46,9 @@ router.get('/:id/delete', getSpotMiddleware, authorizeUser, deleteSpot)
 
 // like a spot
 router.get('/:id/like', getSpotMiddleware, likeSpot)
+
+// filter spots
+router.get('/filter/:type', filterSpots)
 
 
 module.exports = router
