@@ -1,3 +1,5 @@
+const { Op } = require('sequelize')
+// ******************************
 const { Spot, Comment, User } = require('../config/sequelize/associations')
 const helpers = require('../helpers')
 
@@ -61,6 +63,57 @@ exports.getSpot = (req, res) => {
       })
     })
     .catch(err => res.status(404).json({message: err.message}))
+}
+
+exports.searchSpots = (req, res) => {
+  const css = '/styles/spots/index.css'
+  const script = '/scripts/index.js'
+  const { search } = req.query
+  const { search: query } = req.body
+  // res.json({search, query: q})
+  Spot.findAll({
+    where: {
+      [search]: {
+        [Op.iLike]: `%${query}%`
+      }
+    }
+  })
+  .then(spots => {
+    // res.json(spots)
+    res.render('./spots/index', { 
+      spots,
+      static: { css, script },
+      helpers: {
+        displayFlashMessage,
+        checkUser
+      }
+    })
+  })
+  .catch(err => res.status(404).json({message: err.message}))
+}
+
+exports.filterSpots = (req, res) => {
+  const css = '/styles/spots/index.css'
+  const script = '/scripts/index.js'
+  const { type } = req.params
+  const query = req.query[type]
+
+  Spot.findAll({
+    where: {
+      [type]: query
+    }
+  })
+  .then(spots => {
+    res.render('./spots/index', { 
+      spots,
+      static: { css, script },
+      helpers: {
+        displayFlashMessage,
+        checkUser
+      }
+    })
+  })
+  .catch(err => res.status(404).json({message: err.message}))
 }
 
 exports.newSpot = (req, res) => {
