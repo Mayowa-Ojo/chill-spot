@@ -79,3 +79,7 @@ img {
 .angle.right.icon {
   color: white;
 }
+
+i.circular.search {
+  top: 0.25em !important;
+}
