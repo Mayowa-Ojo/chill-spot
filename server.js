@@ -39,7 +39,7 @@ app.use(express.urlencoded({ extended: false }))
 // app.use(csrf({ cookie: true }))
 // method override
 app.use(methodOverride('_method'))
-app.use(express.static('./src/lib'))
+app.use(express.static('./src/public'))
 app.set('views', path.join(__dirname, './src/views'))
 // handlebars
 app.engine('.hbs', exphbs({ extname: '.hbs'}))
