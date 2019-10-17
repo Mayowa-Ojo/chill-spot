@@ -3,10 +3,19 @@ const { Op } = require('sequelize')
 const { Spot, Comment, User } = require('../config/sequelize/associations')
 const helpers = require('../helpers')
 
-const { compare, commentsLength, checkPlural, parseTimeFrame, displayFlashMessage, checkUser, displayUsername } = helpers
+const { 
+  compare, 
+  commentsLength, 
+  checkPlural, 
+  parseTimeFrame, 
+  displayFlashMessage, 
+  checkUser, 
+  displayUsername 
+} = helpers
 
 exports.getSpots = (req, res) => {
-  const script = "/scripts/index.js"
+  const script_one = "/scripts/index.js"
+  const script_two = "/scripts/nav.js"
   const css = "/styles/spots/index.css"
   Spot.findAll({
     include: [
@@ -17,7 +26,7 @@ exports.getSpots = (req, res) => {
     // res.json(spots)
     res.render('./spots/index', { 
       spots,
-      static: { css, script },
+      static: { css, script_one, script_two },
       helpers: {
         displayFlashMessage,
         checkUser
@@ -29,7 +38,8 @@ exports.getSpots = (req, res) => {
 
 exports.getSpot = (req, res) => {
   const css = "/styles/spots/show.css"
-  const script = "/scripts/show.js"
+  const script_one = "/scripts/show.js"
+  const script_two = "/scripts/nav.js"
   const { id } = req.params
   let isEmpty
 
@@ -49,7 +59,7 @@ exports.getSpot = (req, res) => {
       // res.json(spot)
       res.render('./spots/show', { 
         spot, 
-        static: { css, script }, 
+        static: { css, script_one, script_two }, 
         isEmpty,
         helpers: {
           length: commentsLength,
@@ -67,7 +77,8 @@ exports.getSpot = (req, res) => {
 
 exports.searchSpots = (req, res) => {
   const css = '/styles/spots/index.css'
-  const script = '/scripts/index.js'
+  const script_one = '/scripts/index.js'
+  const script_two = '/scripts/nav.js'
   const { search } = req.query
   const { search: query } = req.body
   // res.json({search, query: q})
@@ -82,7 +93,7 @@ exports.searchSpots = (req, res) => {
     // res.json(spots)
     res.render('./spots/index', { 
       spots,
-      static: { css, script },
+      static: { css, script_one, script_two },
       helpers: {
         displayFlashMessage,
         checkUser
@@ -94,7 +105,8 @@ exports.searchSpots = (req, res) => {
 
 exports.filterSpots = (req, res) => {
   const css = '/styles/spots/index.css'
-  const script = '/scripts/index.js'
+  const script_one = '/scripts/index.js'
+  const script_two = '/scripts/nav.js'
   const { type } = req.params
   const query = req.query[type]
 
@@ -106,7 +118,7 @@ exports.filterSpots = (req, res) => {
   .then(spots => {
     res.render('./spots/index', { 
       spots,
-      static: { css, script },
+      static: { css, script_one, script_two },
       helpers: {
         displayFlashMessage,
         checkUser
@@ -118,8 +130,9 @@ exports.filterSpots = (req, res) => {
 
 exports.newSpot = (req, res) => {
   const css = "/styles/spots/new.css"
+  const script_two = "/scripts/nav.js"
   res.render('./spots/new', { 
-    static: { css },
+    static: { css, script_two },
     helpers: {
       checkUser
     },
