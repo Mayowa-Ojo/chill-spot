@@ -1,7 +1,7 @@
 <div class="main-wrapper">
   <section class="spot-container">
-    <div class="ui centered grid container">
-      <div class="six wide column">
+    <div class="container">
+      <div class="left-container">
         <div class="ui segment">
           {{#if isEmpty}}
             <h2 class="ui centered grey header">Not Found</h2>
@@ -10,8 +10,8 @@
           <div class="top-header">              
             <h1 class="ui brown header">{{spot.name}}</h1>            
             <span>
-              <a href="/spots/{{spot.id}}/edit"><i class="edit outline icon"></i></a>
-              <a href="/spots/{{spot.id}}/delete"><i class="trash alternate outline icon"></i></a>
+              <a href="/spots/{{spot.id}}/edit"><i class="edit outline icon popup" data-content="edit this spot" data-variation="mini" data-position="bottom right"></i></a>
+              <a href="/spots/{{spot.id}}/delete"><i class="trash alternate outline icon popup" data-content="delete this spot" data-variation="mini" data-position="bottom right"></i></a>
             </span>
           </div>
           {{!-- main info --}}
@@ -43,13 +43,13 @@
                   <div class="date">{{parseTimeFrame spot.createdAt}}</div>
                 </div>
                 <div class="meta">
-                  <a href="/spots/{{spot.id}}/like" class="like">
+                  <a href="/spots/{{spot.id}}/like" class="like popup" data-content="like this spot" data-variation="mini">
                     <i class="like icon"></i>{{spot.likes}} {{isPlural spot.likes}}
                   </a>
                   <a href="#" class="">
                     <i class="comment outline icon"></i>{{length spot.comments}} {{isPlural spot.comments}}
                   </a>
-                  <a href="#" class="">
+                  <a href="#" class="like popup" data-content="add to favorites" data-variation="mini">
                     <i class="star icon"></i>
                   </a>
                 </div>
@@ -110,8 +110,27 @@
           {{/if}}
         </div>
       </div>
-      <div class="ten wide column">
-        <img src="/public/assets/images/spot-cafe-3537801_640.jpg" alt="" class="ui fluid image">
+      <div class="right-container gallery">
+        
+          <figure class="gallery-image-container gallery-image--1">
+            <img src="/public/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+          </figure>
+          <figure class="gallery-image-container gallery-image--2">
+            <img src="/public/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+          </figure>
+          <figure class="gallery-image-container gallery-image--3">
+            <img src="/public/assets/images/header-tropical-1651426_640.jpg" class="gallery-image" alt="">
+          </figure>
+          <figure class="gallery-image-container gallery-image--4">
+            <img src="/public/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+          </figure>
+          <figure class="gallery-image-container gallery-image--5">
+            <img src="/public/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+          </figure>
+          <figure class="gallery-image-container gallery-image--6">
+            <img src="/public/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+          </figure>
+
       </div>
     </div>
   </section>
