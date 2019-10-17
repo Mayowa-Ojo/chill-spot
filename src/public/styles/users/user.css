@@ -7,7 +7,7 @@ body {
   height: 95vh;
   position: relative;
   border: 1px solid white;
-  background: url('/public/assets/images/background-alcohol-1961542_1280.jpg') no-repeat center center/cover !important;
+  background: url('/assets/images/background-alcohol-1961542_1280.jpg') no-repeat center center/cover !important;
 }
 
 .main-wrapper::after {

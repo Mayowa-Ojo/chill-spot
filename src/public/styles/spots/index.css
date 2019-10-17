@@ -27,7 +27,7 @@ img {
 }
 
 .ui.grid .ui.segment {
-  background: url('/public/assets/images/header-tropical-863344_640.jpg') bottom/cover no-repeat !important;
+  background: url('/assets/images/header-tropical-863344_640.jpg') bottom/cover no-repeat !important;
   position: relative;
 }
 
