@@ -15,21 +15,56 @@ const {
 
 exports.getSpots = (req, res) => {
   const script_one = "/scripts/index.js"
-  const script_two = "/scripts/nav.js"
   const css = "/styles/spots/index.css"
+
   Spot.findAll({
     include: [
-      { model: User, attributes: ['id', 'username', 'name', 'avatar']}
+      { model: User, attributes: ['id', 'username', 'name', 'avatar']},
+      { model: Comment }
     ]
   })
   .then(spots => {
     // res.json(spots)
     res.render('./spots/index', { 
       spots,
-      static: { css, script_one, script_two },
+      static: { css, script_one },
       helpers: {
         displayFlashMessage,
-        checkUser
+        checkUser,
+        parseTimeFrame,
+        commentsLength
+      }
+    })
+  })
+  .catch(err => res.status(404).json({message: err.message}))
+}
+
+exports.getFavorites = (req, res) => {
+  const script_one = "/scripts/favorites.js"
+  const css = "/styles/spots/favorites.css"
+  const { storage_items } = req.body
+
+  Spot.findAll({
+    where: {
+      id: {
+        [Op.in]: storage_items != '' ? JSON.parse(storage_items).ids : ['1']
+      }
+    },
+    include: [
+      { model: User, attributes: ['id', 'username']},
+      { model: Comment }
+    ]
+  })
+  .then(spots => {
+    // res.json(spots)
+    res.render('./spots/favorites', {
+      spots,
+      static: { css, script_one },
+      helpers: {
+        checkUser,
+        displayFlashMessage,
+        parseTimeFrame,
+        commentsLength
       }
     })
   })
@@ -39,7 +74,7 @@ exports.getSpots = (req, res) => {
 exports.getSpot = (req, res) => {
   const css = "/styles/spots/show.css"
   const script_one = "/scripts/show.js"
-  const script_two = "/scripts/nav.js"
+  const script_two = "/scripts/favorites.js"
   const { id } = req.params
   let isEmpty
 
@@ -78,7 +113,6 @@ exports.getSpot = (req, res) => {
 exports.searchSpots = (req, res) => {
   const css = '/styles/spots/index.css'
   const script_one = '/scripts/index.js'
-  const script_two = '/scripts/nav.js'
   const { search } = req.query
   const { search: query } = req.body
   // res.json({search, query: q})
@@ -93,7 +127,7 @@ exports.searchSpots = (req, res) => {
     // res.json(spots)
     res.render('./spots/index', { 
       spots,
-      static: { css, script_one, script_two },
+      static: { css, script_one },
       helpers: {
         displayFlashMessage,
         checkUser
@@ -106,7 +140,6 @@ exports.searchSpots = (req, res) => {
 exports.filterSpots = (req, res) => {
   const css = '/styles/spots/index.css'
   const script_one = '/scripts/index.js'
-  const script_two = '/scripts/nav.js'
   const { type } = req.params
   const query = req.query[type]
 
@@ -118,7 +151,7 @@ exports.filterSpots = (req, res) => {
   .then(spots => {
     res.render('./spots/index', { 
       spots,
-      static: { css, script_one, script_two },
+      static: { css, script_one },
       helpers: {
         displayFlashMessage,
         checkUser
@@ -130,9 +163,8 @@ exports.filterSpots = (req, res) => {
 
 exports.newSpot = (req, res) => {
   const css = "/styles/spots/new.css"
-  const script_two = "/scripts/nav.js"
   res.render('./spots/new', { 
-    static: { css, script_two },
+    static: { css },
     helpers: {
       checkUser
     },
