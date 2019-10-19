@@ -55,8 +55,9 @@ It's a collection of hangout locations entered by users for public acess to rati
 - [x] Authorize specific routes
 - [x] Implement delete functionality for spots and comments
 - [x] Update landing page ui
+- [x] Update view page ui
+- [x] Implement favorites functionality
+- [x] Setup favorites page
+- [ ] Add footer to layout templates
 - [ ] Setup user profile page
-- [ ] Update view page ui
-- [ ] Implement favorites functionality
-- [ ] Setup favorites page
 - [ ] Write unit and integration tests
