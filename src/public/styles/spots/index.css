@@ -18,7 +18,7 @@ img {
 }
 
 .ui.grid {
-  height: 250px;
+  min-height: 250px;
 }
 
 .ui.grid.container {
