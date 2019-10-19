@@ -8,10 +8,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
   {{!-- url for the css file is passed dynamically from the controller --}}
   <link rel="stylesheet" href="{{ static.css }}">
+  <link rel="stylesheet" href="/styles/layouts/main.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
-  <script src="{{static.script_one}}" defer></script>
-  <script src="{{static.script_two}}" defer></script>
+  <script type="module" src="{{static.script_one}}" defer></script>
+  <script type="module" src="{{static.script_two}}" defer></script>
+  <script type="module" src="/scripts/nav.js" defer></script>
 </head>
 <body>
   <nav>
@@ -21,7 +23,12 @@
       </a>
       <div class="right menu">
         <a href="/spots/new" class="item"><i class="edit outline icon"></i>Add a chill-spot</a>
-        <a href="#" class="item"><i class="heart outline icon"></i>Favourite Spots</a>
+        <div class="item">
+        <form action="/spots/favorites" method="post">
+          <input type="hidden" name="storage_items" value="">
+          <button class="ui labeled button" type="submit"><i class="heart outline icon"></i>Favourites</button>
+        </form>
+        </div>
         {{checkUser currentUser}}
         <a href="/users/register" class="item">Register</a>
       </div>
@@ -29,6 +36,27 @@
   </nav>
   {{{ body }}}
 
+  <div class="ui divider"></div>
+  <section class="footer">
+    <div class="footer-container">
+      <p>Created By: Mayowa Ojo, © 2019</p>
+      <a href="https://github.com/mayowa-ojo" target="_blank">
+        <button class="ui circular icon button">
+          <i class="github icon"></i>
+        </button>
+      </a>
+      <a href="https://mayowa-ojo.github.io" target="_blank">
+        <button class="ui circular icon button">
+          <i class="briefcase icon"></i>
+        </button>
+      </a>
+      <a href="https://www.linkedin.com/in/mayowa-ojo-39394b137" target="_blank">
+        <button class="ui circular icon button">
+          <i class="linkedin icon"></i>
+        </button>
+      </a>
+    </div>
+  </section>
   
   <script>
     // dropdown

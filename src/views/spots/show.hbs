@@ -39,17 +39,17 @@
               </div>
               <div class="content">
                 <div class="summary">
-                  <a href="#" class="user">{{spot.user.username}}</a>
+                  <a href="/users/profile" class="user">{{spot.user.username}}</a>
                   <div class="date">{{parseTimeFrame spot.createdAt}}</div>
                 </div>
                 <div class="meta">
                   <a href="/spots/{{spot.id}}/like" class="like popup" data-content="like this spot" data-variation="mini">
                     <i class="like icon"></i>{{spot.likes}} {{isPlural spot.likes}}
                   </a>
-                  <a href="#" class="">
+                  <a class="">
                     <i class="comment outline icon"></i>{{length spot.comments}} {{isPlural spot.comments}}
                   </a>
-                  <a href="#" class="like popup" data-content="add to favorites" data-variation="mini">
+                  <a class="like popup" data-content="add to favorites" data-variation="mini">
                     <i class="star icon"></i>
                   </a>
                 </div>
@@ -62,11 +62,11 @@
             <h3 class="ui dividing header">Comments</h3>
             {{#each spot.comments}}
               <div class="comment">
-                <a href="#" class="avatar">
-                  <img src="/public/assets/images/avatar-1.png" alt="avatar placeholder">
+                <a href="/users/profile" class="avatar">
+                  <img src="/assets/images/avatar-1.png" alt="avatar placeholder">
                 </a>
                 <div class="content">
-                  <a href="#" class="author">{{displayUsername this.user}}</a>
+                  <a href="/users/profile" class="author">{{displayUsername this.user}}</a>
                   <div class="metadata">
                     <span class="date">{{parseTimeFrame this.createdAt}}</span>
                   </div>
@@ -74,10 +74,10 @@
                   <input type="hidden" name="id" value="{{this.id}}">
                   
                   <div class="actions">
-                    <a href="/comments/{{this.id}}/reply" class="reply"><i class="reply icon"></i></a>
-                    <a href="/comments/{{this.id}}/like"><i class="heart outline icon"></i>{{this.likes}}</a>
-                    <a href="/comments/{{this.id}}/delete"><i class="trash alternate outline icon"></i></a>
-                    <a href="#"><i class="edit outline icon"></i></a>
+                    <a class="popup reply" href="/comments/{{this.id}}/reply" data-content="reply this comment" data-variation="mini"><i class="reply icon"></i></a>
+                    <a class="popup" href="/comments/{{this.id}}/like" data-content="like this comment" data-variation="mini"><i class="heart outline icon"></i>{{this.likes}}</a>
+                    <a class="popup" href="/comments/{{this.id}}/delete" data-content="delete this comment" data-variation="mini"><i class="trash alternate outline icon"></i></a>
+                    <a class="popup" data-content="edit this comment" data-variation="mini"><i class="edit outline icon"></i></a>
                   </div>
                 </div>
               </div>
@@ -113,22 +113,22 @@
       <div class="right-container gallery">
         
           <figure class="gallery-image-container gallery-image--1">
-            <img src="/public/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+            <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
           </figure>
           <figure class="gallery-image-container gallery-image--2">
-            <img src="/public/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+            <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
           </figure>
           <figure class="gallery-image-container gallery-image--3">
-            <img src="/public/assets/images/header-tropical-1651426_640.jpg" class="gallery-image" alt="">
+            <img src="/assets/images/header-tropical-1651426_640.jpg" class="gallery-image" alt="">
           </figure>
           <figure class="gallery-image-container gallery-image--4">
-            <img src="/public/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+            <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
           </figure>
           <figure class="gallery-image-container gallery-image--5">
-            <img src="/public/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+            <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
           </figure>
           <figure class="gallery-image-container gallery-image--6">
-            <img src="/public/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+            <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
           </figure>
 
       </div>
