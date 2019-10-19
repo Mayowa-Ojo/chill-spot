@@ -30,7 +30,9 @@ exports.compare = function (base, ref) {
 // ************************************
 // handlebars helpers
 exports.commentsLength = function(comments) {
-  return comments.length
+  if(comments.length !== undefined) {
+    return comments.length
+  } else return '0'
 }
 
 exports.checkPlural = function(arg) {
