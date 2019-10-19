@@ -14,7 +14,8 @@ const {
   deleteSpot, 
   likeSpot, 
   filterSpots, 
-  searchSpots 
+  searchSpots,
+  getFavorites
 } = controllers
 
 /** Spot routes */
@@ -31,6 +32,9 @@ router.post('/', authorizeRoute, createSpot)
 
 // search spots
 router.post('/search', searchSpots)
+
+// get favorite spots
+router.post('/favorites', getFavorites)
 
 // get single spot by id
 router.get('/:id', getSpot)
@@ -49,6 +53,5 @@ router.get('/:id/like', getSpotMiddleware, likeSpot)
 
 // filter spots
 router.get('/filter/:type', filterSpots)
-
 
 module.exports = router
