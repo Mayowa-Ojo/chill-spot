@@ -1,0 +1,26 @@
+.footer {
+  height: 100px;
+  background: #ecf0f1;
+}
+
+.ui.divider {
+  margin: 0;
+}
+
+.footer-container {
+  width: 40%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-container button, .footer-container p {
+  margin: 0 1em !important;
+}
+
+.footer-container p {
+  margin: 0 1em 1 !important;
+  color: grey;
+}
