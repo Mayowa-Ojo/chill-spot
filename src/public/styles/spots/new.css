@@ -28,7 +28,7 @@ a {
 
 .new-spot-form {
   width: 40vw;
-  height: 70vh;
+  min-height: 70vh;
   margin: 4em auto;
   position: relative;
   z-index: 2;
@@ -42,4 +42,14 @@ a {
   margin-top: 2em;
   display: flex;
   justify-content: space-between;
+}
+
+.image-tags {
+  margin-top: 0.8em;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-tags div.ui.image {
+  margin: 3px;
 }
