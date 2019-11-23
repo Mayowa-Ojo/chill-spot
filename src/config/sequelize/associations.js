@@ -2,9 +2,12 @@ const { sequelize } = require('./sequelize')
 const Spot = require('../../models/spot')
 const Comment = require('../../models/comment')
 const User = require('../../models/user')
+const Media = require('../../models/media')
 
 // associations
 Spot.hasMany(Comment, { foreignKey: 'spotId_fk'})
+Spot.hasMany(Media, { foreignKey: 'spotId_fk'})
+Media.belongsTo(Spot, { foreignKey: 'spotId_fk'})
 Comment.belongsTo(Spot, { foreignKey: 'spotId_fk'})
 User.hasMany(Spot, { foreignKey: 'userId_fk'})
 Spot.belongsTo(User, { foreignKey: 'userId_fk'})
@@ -31,5 +34,6 @@ sequelize.sync({ force: false })
 module.exports = {
   Spot,
   Comment,
-  User
+  User,
+  Media
 }
