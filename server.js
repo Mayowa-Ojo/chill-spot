@@ -14,6 +14,7 @@ const methodOverride = require('method-override')
 // relative imports
 const userRouter     = require('./src/routes/user')
 const spotRouter     = require('./src/routes/spot')
+const mediaRouter    = require('./src/routes/media')
 const commentRouter  = require('./src/routes/comment')
   
 /** config */
@@ -65,8 +66,8 @@ app.use((req, res, next) => {
 // express router
 app.use('/spots', spotRouter)
 app.use('/users', userRouter)
+app.use('/media', mediaRouter)
 app.use('/comments', commentRouter)
-
 
 app.get('/', (req, res) => {
   res.render('landing', { layout: false })
