@@ -1,6 +1,6 @@
 const { Op } = require('sequelize')
 // ******************************
-const { Spot, Comment, User } = require('../config/sequelize/associations')
+const { Spot, Comment, User, Media } = require('../config/sequelize/associations')
 const helpers = require('../helpers')
 
 const { 
@@ -85,7 +85,8 @@ exports.getSpot = (req, res) => {
           model: Comment,
           include: [ { model: User, attributes: ['id', 'username', 'name', 'avatar']}]
         },
-        { model: User, attributes: ['id', 'username', 'name', 'avatar']}
+        { model: User, attributes: ['id', 'username', 'name', 'avatar']},
+        { model: Media }
       ]    
     })
     .then(spot => {
@@ -163,8 +164,10 @@ exports.filterSpots = (req, res) => {
 
 exports.newSpot = (req, res) => {
   const css = "/styles/spots/new.css"
+  const script_one = '/scripts/new.js'
+
   res.render('./spots/new', { 
-    static: { css },
+    static: { css, script_one },
     helpers: {
       checkUser
     },
@@ -173,7 +176,7 @@ exports.newSpot = (req, res) => {
 }
 
 exports.createSpot = (req, res) => {
-  const { name, location, description, price, image, category } = req.body
+  const { name, location, description, price, image, category, mediaIds } = req.body
   const { user: userId_fk } = req.query
   const newSpot = {
     name,
@@ -186,11 +189,23 @@ exports.createSpot = (req, res) => {
   }
 
   Spot.create(newSpot)
-    .then(spot => {
-      res.redirect('/spots')
-      // res.json(spot)
+  .then(spot => {
+    // update spotId field on media table
+    JSON.parse(mediaIds).forEach(mediaId => {
+      Media.findByPk(mediaId)
+        .then(media => {
+          media.update({ spotId_fk: spot.id}, { fields: ['spotId_fk']})
+            .then(updatedMedia => {
+              console.log(updatedMedia)
+            })
+            .catch(err => res.status(500).json({message: err.message}))
+        })
+        .catch(err => res.status(500).json({message: err.message}))
+        // res.json(spot)
     })
-    .catch(err => res.status(500).json({message: err.message}))
+    res.redirect('/spots')
+  })
+  .catch(err => res.status(500).json({message: err.message}))
 }
 
 exports.editSpotForm = (req, res) => {
