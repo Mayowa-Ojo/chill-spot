@@ -21,7 +21,7 @@ const Spot = sequelize.define('spot', {
   },
   image: {
     type: STRING,
-    allowNull: false
+    // allowNull: false
   },
   description: {
     type: STRING,
