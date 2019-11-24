@@ -5,25 +5,40 @@
       <form action="/spots/?user={{userId}}" class="ui form" method="POST">
         <div class="field">
           <label>Name</label>
-          <input type="text" name="name" placeholder="Name">
+          <input type="text" name="name" placeholder="Name" data-input="name">
         </div>
         <div class="two fields">
           <div class="field">
             <label>Location</label>
-            <input type="text" name="location" placeholder="Location">
+            <input type="text" name="location" placeholder="Location" data-input="location">
           </div>
           <div class="field">
             <label>Price-range</label>
-            <input type="text" name="price" placeholder="Enter a price range">
+            <input type="text" name="price" placeholder="Enter a price range" data-input="price_range">
           </div>
         </div>
         <div class="field">
           <label>Description</label>
-          <textarea name="description" rows="4"></textarea>
+          <textarea name="description" rows="4" data-input="description"></textarea>
         </div>
+        
         <div class="field">
-            <label>Image</label>
-            <input type="text" name="image" placeholder="Image">
+          <label>Images</label>
+          <div class="ui mini icon button" onclick="showModal()" data-button="show_modal">
+            <i class="cloud upload icon"></i>
+            Upload Images
+          </div>
+          <div class="ui label" data-label="amount">
+            <i class="image outline icon"></i><span>0</span>
+          </div>
+          <div class="image-tags">
+            {{!-- <div class="ui image label">
+              <img src="/assets/images/image-placeholder-350x350.png" alt="label image">
+              image.png [0.5mb]
+              <i class="delete icon"></i>
+            </div> --}}
+          </div>
+          <input type="hidden" name="mediaIds" value='' data-id={{media.id}}>
         </div>
         <div class="field">
           <label>Category</label>
@@ -43,7 +58,7 @@
         </div>
         {{!-- <button class="fluid ui button">Add this spot</button> --}}
         <div class="btn-bottom">
-          <div class="ui animated button" tabindex="0">
+          <div class="ui animated button" tabindex="0" data-button="back">
             <a href="/spots">
               <div class="visible content">Go back</div>
               <div class="hidden content">
@@ -51,14 +66,42 @@
               </div>
             </a>
           </div>
-          <button class="ui animated button" type="submit">
-            <div class="visible content">Add this spot</div>
+          <button class="ui animated button" type="submit" data-button="submit">
+            <div class="visible content">Submit</div>
             <div class="hidden content">
               <i class="calendar plus icon"></i>
             </div>
           </button>
         </div>
       </form>
+    </div>
+
+    <div class="ui mini modal">
+      <div class="header"><i class="images outline icon"></i> Upload up to six images</div>
+      <div class="content">
+        {{!-- <div class="ui mini negative message">
+          <i class="close icon"></i>
+          File already exists.
+        </div> --}}
+        <form action="/media" class="ui form" method="POST" enctype="multipart/form-data">
+        <div class="field">
+          <label>Image</label>
+          <input type="file" name="image" placeholder="Image">
+        </div>
+
+        <button type="submit" class="ui mini positive icon button" data-button="upload">
+          <i class="cloud upload icon"></i> 
+          Upload
+        </button>
+        </form>
+      </div>
+      
+      <div class="actions">
+        <button type="submit" class="ui mini negative icon button" onclick="hideModal()">
+          <i class="window close icon"></i> 
+          Cancel
+        </button>
+      </div>      
     </div>
   </section>
 </div>

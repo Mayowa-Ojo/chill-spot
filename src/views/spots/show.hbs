@@ -110,27 +110,30 @@
           {{/if}}
         </div>
       </div>
-      <div class="right-container gallery">
-        
-          <figure class="gallery-image-container gallery-image--1">
-            <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+      <div class="right-container gallery" data-media={{spot.media}}>
+        {{#each spot.media}}
+          <figure class="gallery-image-container gallery-image--{{@index}}">
+            <img src="{{this.url}}" class="gallery-image" alt="">
           </figure>
-          <figure class="gallery-image-container gallery-image--2">
-            <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
-          </figure>
-          <figure class="gallery-image-container gallery-image--3">
-            <img src="/assets/images/header-tropical-1651426_640.jpg" class="gallery-image" alt="">
-          </figure>
-          <figure class="gallery-image-container gallery-image--4">
-            <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
-          </figure>
-          <figure class="gallery-image-container gallery-image--5">
-            <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
-          </figure>
-          <figure class="gallery-image-container gallery-image--6">
-            <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
-          </figure>
-
+        {{/each}}
+        {{!-- <figure class="gallery-image-container gallery-image--1">
+          <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+        </figure>
+        <figure class="gallery-image-container gallery-image--2">
+          <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+        </figure>
+        <figure class="gallery-image-container gallery-image--3">
+          <img src="/assets/images/header-tropical-1651426_640.jpg" class="gallery-image" alt="">
+        </figure>
+        <figure class="gallery-image-container gallery-image--4">
+          <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+        </figure>
+        <figure class="gallery-image-container gallery-image--5">
+          <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+        </figure>
+        <figure class="gallery-image-container gallery-image--6">
+          <img src="/assets/images/spot-cafe-3537801_640.jpg" class="gallery-image" alt="">
+        </figure> --}}
       </div>
     </div>
   </section>
